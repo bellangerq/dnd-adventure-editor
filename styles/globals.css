@@ -14,3 +14,14 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.do-print {
+  border: solid 5px red;
+}
+
+.container-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 1rem;
+}
