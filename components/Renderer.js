@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import MarkdownIt from 'markdown-it'
 import markdownItFrontMatter from 'markdown-it-front-matter'
 import markdownItContainer from 'markdown-it-container'
+import markdownItTableCaptions from 'markdown-it-table-captions'
 import yaml from 'js-yaml'
 
 import Meta from './Meta'
@@ -30,6 +31,9 @@ export default function Renderer({ value }) {
         }
       }
     })
+
+    // handle table captions
+    md.use(markdownItTableCaptions)
 
     const html = md.render(value)
 
