@@ -1,6 +1,6 @@
 export default `---
 title: 'Dignissim dui eu, aliquet nulla'
-subtitle: 'Ac dictum ipsum posuere id. Vestibulum eu mi pulvinar, mollis nibh in, feugiat felis. Donec at augue bibendum, hendrerit mi sit amet, mattis urna.'
+description: 'Ac dictum ipsum posuere id. Vestibulum eu mi pulvinar, mollis nibh in, feugiat felis. Donec at augue bibendum, hendrerit mi sit amet, mattis urna.'
 lang: 'fr-FR'
 date: 2021-09-23
 author:
