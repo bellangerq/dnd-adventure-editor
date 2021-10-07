@@ -15,8 +15,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in eros interd
 
 ## Callouts
 
-::: players
-Imperdiet sit amet arcu. In lectus dolor, sagittis non fermentum non
+::: spoiler
+### Imperdiet sit amet arcu. In lectus dolor, sagittis non fermentum non
+
+*lol* mdr
+
+- 1
+- 2
+- 3
 :::
 
 ::: dm Callout avec un titre
