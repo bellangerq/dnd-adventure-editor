@@ -1,4 +1,4 @@
-export default `---
+const defaultEditorValue = `---
 title: 'Dignissim dui eu, aliquet nulla'
 description: 'Ac dictum ipsum posuere id. Vestibulum eu mi pulvinar, mollis nibh in, feugiat felis. Donec at augue bibendum, hendrerit mi sit amet, mattis urna.'
 lang: 'fr-FR'
@@ -51,4 +51,6 @@ Ex
 Morbi
 : metus dui, tincidunt quis tempus ac.
 
-`
+`;
+
+export default defaultEditorValue;

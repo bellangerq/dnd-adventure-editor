@@ -1,19 +1,29 @@
+import {
+  Textarea,
+  FormControl,
+  FormLabel,
+  VisuallyHidden,
+} from "@chakra-ui/react";
+
 export default function Editor({ onChange, value }) {
   const handleChange = (e) => {
-    onChange(e.target.value)
-  }
+    onChange(e.target.value);
+  };
 
   return (
-    <div className="no-print">
-      <label style={{ display: 'block' }} htmlFor="editor">
-        Entrée
-      </label>
-      <textarea
-        style={{ display: 'block', height: '100%', width: '100%' }}
+    <FormControl id="editor" className="no-print">
+      <VisuallyHidden>
+        <FormLabel>Entrée</FormLabel>
+      </VisuallyHidden>
+      <Textarea
+        spellCheck={false}
+        widht="100%"
+        height="100%"
+        display="block"
         value={value}
         onChange={handleChange}
-        id="editor"
+        fontFamily="monospace"
       />
-    </div>
-  )
+    </FormControl>
+  );
 }

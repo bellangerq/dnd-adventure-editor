@@ -1,7 +1,8 @@
-import Head from 'next/head'
+import Head from "next/head";
+import { ChakraProvider } from "@chakra-ui/react";
 
-import '../styles/globals.css'
-import '../styles/print.css'
+import "../styles/print.css";
+import customTheme from "../utils/theme";
 
 function App({ Component, pageProps }) {
   return (
@@ -9,9 +10,12 @@ function App({ Component, pageProps }) {
       <Head>
         <title>DnD Adventure Editor</title>
       </Head>
-      <Component {...pageProps} />
+
+      <ChakraProvider theme={customTheme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

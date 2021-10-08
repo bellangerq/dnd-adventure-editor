@@ -13,6 +13,7 @@ yarn dev
 ## To do
 
 - style layout + responsive
+- synchronize scrolls
 - style editor
 - style renderer
 - style meta

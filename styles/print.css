@@ -2,9 +2,4 @@
   .no-print {
     display: none;
   }
-
-  .container-grid {
-    display: block;
-    padding: 0;
-  }
 }

@@ -1,59 +1,69 @@
-import { useMemo } from 'react'
-import MarkdownIt from 'markdown-it'
-import markdownItFrontMatter from 'markdown-it-front-matter'
-import markdownItContainer from 'markdown-it-container'
-import markdownItTableCaptions from 'markdown-it-table-captions'
-import yaml from 'js-yaml'
+import { useMemo } from "react";
+import MarkdownIt from "markdown-it";
+import markdownItFrontMatter from "markdown-it-front-matter";
+import markdownItContainer from "markdown-it-container";
+import markdownItTableCaptions from "markdown-it-table-captions";
+import yaml from "js-yaml";
+import { Stack, Divider, useColorModeValue } from "@chakra-ui/react";
 
-import Meta from './Meta'
+import Meta from "./Meta";
 
 export default function Renderer({ value }) {
   // parse markdown and extract frontmatter
   const { html, rawFrontMatter } = useMemo(() => {
-    const md = new MarkdownIt()
-    let rawFrontMatter
+    const md = new MarkdownIt();
+    let rawFrontMatter;
 
     // extract front matter
     md.use(markdownItFrontMatter, (fm) => {
-      rawFrontMatter = fm
-    })
+      rawFrontMatter = fm;
+    });
 
     // render callout blocks
-    md.use(markdownItContainer, 'callout', {
+    md.use(markdownItContainer, "callout", {
       validate: function (params) {
-        return true
+        return true;
       },
       render: function (tokens, idx) {
         if (tokens[idx].nesting === 1) {
-          return '<div class="callout" style="border: 2px solid gold;">'
+          return '<div class="callout" style="border: 2px solid gold;">';
         } else {
-          return '</div>'
+          return "</div>";
         }
-      }
-    })
+      },
+    });
 
     // handle table captions
-    md.use(markdownItTableCaptions)
+    md.use(markdownItTableCaptions);
 
-    const html = md.render(value)
+    const html = md.render(value);
 
-    return { html, rawFrontMatter }
-  }, [value])
+    return { html, rawFrontMatter };
+  }, [value]);
 
   // parse yaml frontmatter
   const frontMatter = useMemo(() => {
     try {
-      return yaml.load(rawFrontMatter)
+      return yaml.load(rawFrontMatter);
     } catch {
       // fallback to empty object
-      return {}
+      return {};
     }
-  }, [rawFrontMatter])
+  }, [rawFrontMatter]);
+
+  const borderColor = useColorModeValue("gray.200", "white.300");
 
   return (
-    <div>
+    <Stack
+      spacing={4}
+      borderWidth={1}
+      borderColor={borderColor}
+      padding={4}
+      borderRadius="md"
+    >
       <Meta {...frontMatter} />
+      <Divider />
       <div dangerouslySetInnerHTML={{ __html: html }} />
-    </div>
-  )
+    </Stack>
+  );
 }

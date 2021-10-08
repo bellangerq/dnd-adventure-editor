@@ -1,3 +1,5 @@
+import { UnorderedList, ListItem } from "@chakra-ui/layout";
+
 /**
  * @param {Object} [props]
  * @param {string} [props.title]
@@ -15,23 +17,23 @@ export default function Meta({
   lang,
   date,
   author,
-  cover
+  cover,
 }) {
   return (
-    <ul>
-      {title && <li>{title}</li>}
-      {description && <li>{description}</li>}
-      {lang && <li>{lang}</li>}
-      {date && <li>{date.toString()}</li>}
+    <UnorderedList spacing={2}>
+      {title && <ListItem>{title}</ListItem>}
+      {description && <ListItem>{description}</ListItem>}
+      {lang && <ListItem>{lang}</ListItem>}
+      {date && <ListItem>{date.toString()}</ListItem>}
       {author && (
-        <li>
-          <ul>
-            <li>{author.name}</li>
-            <li>{author.contact}</li>
-          </ul>
-        </li>
+        <ListItem>
+          <UnorderedList>
+            <ListItem>{author.name}</ListItem>
+            <ListItem>{author.contact}</ListItem>
+          </UnorderedList>
+        </ListItem>
       )}
-      {cover && <li>{cover}</li>}
-    </ul>
-  )
+      {cover && <ListItem>{cover}</ListItem>}
+    </UnorderedList>
+  );
 }
