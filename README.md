@@ -1,23 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# dnd-adventure-editor
+
+Online editor to write and print beautiful D&D adventures.
+
+Write your adventure here: [https://dnd-adventure-editor.vercel.app/](https://dnd-adventure-editor.vercel.app/).
 
 ## Development
 
-First, run the development server:
+Run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
 ## To do
 
-- style layout + responsive
-- synchronize scrolls
-- style editor
-- style renderer
-- style meta
-- style for printing
-- how to page
-  - print to pdf
-  - render elements (link to markdown doc + custom elements help...)
+- Meta styles
+- Responsive Toolbar styles
+- Print styles
+
+## Features
+
+- [ ] Help page (render markdown and custom elements, print to pdf...).
+- [ ] Save in localstorage
+- [ ] Load default / reset
+- [ ] Paste images

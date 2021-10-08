@@ -8,8 +8,19 @@ export default function Toolbar({
   onToggleFocusMode,
 }) {
   return (
-    <Flex justify="space-between" marginBottom={4} className="no-print">
-      <ButtonGroup spacing={4}>
+    <Flex
+      justify="space-between"
+      marginBottom={4}
+      className="no-print"
+      flexWrap={{ base: 'wrap', md: 'nowrap' }}
+    >
+      <ButtonGroup
+        spacing={{ base: 0, md: 4 }}
+        marginRight={4}
+        marginBottom={{ base: 2, md: 0 }}
+        flexWrap={{ base: 'wrap', md: 'nowrap' }}
+        flexDir={{ base: 'column', md: 'row' }}
+      >
         <Button
           type="button"
           onClick={onDisableScroll}
@@ -17,6 +28,7 @@ export default function Toolbar({
           rightIcon={disableScroll ? <CloseIcon /> : <CheckIcon />}
           variant="outline"
           aria-pressed={disableScroll}
+          marginBottom={{ base: 2, md: 0 }}
         >
           <VisuallyHidden>
             {disableScroll ? 'Enable' : 'Disable'}
