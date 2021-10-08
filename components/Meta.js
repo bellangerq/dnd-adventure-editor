@@ -24,7 +24,7 @@ export default function Meta({
       {title && <ListItem>{title}</ListItem>}
       {description && <ListItem>{description}</ListItem>}
       {lang && <ListItem>{lang}</ListItem>}
-      {date && <ListItem>{date.toString()}</ListItem>}
+      {/* {date && <ListItem>{date.toString()}</ListItem>} */}
       {author && (
         <ListItem>
           <UnorderedList>

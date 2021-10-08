@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Heading, Button, Grid, Box, Container, Flex } from "@chakra-ui/react";
 
 import Editor from "../components/Editor";
@@ -7,13 +7,53 @@ import defaultValue from "../utils/default-editor-value";
 
 export default function Home() {
   const [value, setValue] = useState(defaultValue);
+  const [ignoreScroll, setIgnoreScroll] = useState(false);
+  const editorRef = useRef();
+  const rendererRef = useRef();
 
   const handleChange = (value) => {
     setValue(value);
   };
 
+  // TODO: extract synchronized scrolling into a hook
+  const handleTextareaScroll = (event) => {
+    if (ignoreScroll) {
+      setIgnoreScroll(false);
+      return;
+    }
+
+    const { scrollTop, scrollHeight, clientHeight } = event.target;
+    const scrollTopMax = scrollHeight - clientHeight;
+    const ratio = scrollTop / scrollTopMax;
+
+    const rendererScrollTopMax =
+      rendererRef.current.scrollHeight - rendererRef.current.clientHeight;
+    const rendererTop = Math.round(rendererScrollTopMax * ratio);
+
+    setIgnoreScroll(true);
+    rendererRef.current.scrollTop = rendererTop;
+  };
+
+  const handleRendererScroll = (event) => {
+    if (ignoreScroll) {
+      setIgnoreScroll(false);
+      return;
+    }
+
+    const { scrollTop, scrollHeight, clientHeight } = event.target;
+    const scrollTopMax = scrollHeight - clientHeight;
+    const ratio = scrollTop / scrollTopMax;
+
+    const editorScrollTopMax =
+      editorRef.current.scrollHeight - editorRef.current.clientHeight;
+    const editorTop = Math.round(editorScrollTopMax * ratio);
+
+    setIgnoreScroll(true);
+    editorRef.current.scrollTop = editorTop;
+  };
+
   return (
-    <Flex minHeight="100vh" direction="column">
+    <Flex height="100vh" direction="column">
       <Box as="header" marginTop={4}>
         <Heading as="h1" className="no-print" textAlign="center">
           DnD adventure editor
@@ -38,9 +78,30 @@ export default function Home() {
           </Button>
         </Flex>
 
-        <Grid templateColumns="1fr 1fr" gap={4} flexGrow={1}>
-          <Editor value={value} onChange={handleChange} />
-          <Renderer value={value} />
+        <Grid
+          templateColumns={{ sm: "1fr", md: "1fr 1fr" }}
+          templateRows={{ sm: "1fr 1fr", md: "1fr" }}
+          gap={4}
+          flexGrow={1}
+          height={0}
+          sx={{
+            "@media print": {
+              height: "initial",
+              display: "block",
+            },
+          }}
+        >
+          <Editor
+            value={value}
+            onChange={handleChange}
+            scrollRef={editorRef}
+            onScroll={handleTextareaScroll}
+          />
+          <Renderer
+            value={value}
+            scrollRef={rendererRef}
+            onScroll={handleRendererScroll}
+          />
         </Grid>
       </Container>
     </Flex>

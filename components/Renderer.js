@@ -8,7 +8,7 @@ import { Stack, Divider, useColorModeValue } from "@chakra-ui/react";
 
 import Meta from "./Meta";
 
-export default function Renderer({ value }) {
+export default function Renderer({ value, scrollRef, onScroll }) {
   // parse markdown and extract frontmatter
   const { html, rawFrontMatter } = useMemo(() => {
     const md = new MarkdownIt();
@@ -60,6 +60,9 @@ export default function Renderer({ value }) {
       borderColor={borderColor}
       padding={4}
       borderRadius="md"
+      overflow="auto"
+      ref={scrollRef}
+      onScroll={onScroll}
     >
       <Meta {...frontMatter} />
       <Divider />

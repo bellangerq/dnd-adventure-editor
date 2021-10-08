@@ -5,7 +5,7 @@ import {
   VisuallyHidden,
 } from "@chakra-ui/react";
 
-export default function Editor({ onChange, value }) {
+export default function Editor({ onChange, value, scrollRef, onScroll }) {
   const handleChange = (e) => {
     onChange(e.target.value);
   };
@@ -16,6 +16,7 @@ export default function Editor({ onChange, value }) {
         <FormLabel>Entrée</FormLabel>
       </VisuallyHidden>
       <Textarea
+        ref={scrollRef}
         spellCheck={false}
         widht="100%"
         height="100%"
@@ -23,6 +24,7 @@ export default function Editor({ onChange, value }) {
         value={value}
         onChange={handleChange}
         fontFamily="monospace"
+        onScroll={onScroll}
       />
     </FormControl>
   );
