@@ -21,7 +21,7 @@ export default function Editor({ onChange, value, scrollRef, onScroll }) {
         height="100%"
         value={value}
         onChange={handleChange}
-        fontFamily="monospace"
+        fontFamily="mono"
         onScroll={onScroll}
         resize="none"
       />

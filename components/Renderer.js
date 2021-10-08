@@ -1,57 +1,65 @@
-import { useMemo } from "react";
-import MarkdownIt from "markdown-it";
-import markdownItFrontMatter from "markdown-it-front-matter";
-import markdownItContainer from "markdown-it-container";
-import markdownItTableCaptions from "markdown-it-table-captions";
-import yaml from "js-yaml";
-import { Stack, Divider, useColorModeValue } from "@chakra-ui/react";
+import { useMemo } from 'react'
+import MarkdownIt from 'markdown-it'
+import markdownItFrontMatter from 'markdown-it-front-matter'
+import markdownItContainer from 'markdown-it-container'
+import markdownItTableCaptions from 'markdown-it-table-captions'
+import yaml from 'js-yaml'
+import {
+  Stack,
+  Divider,
+  useColorModeValue,
+  useColorMode,
+} from '@chakra-ui/react'
+import clsx from 'clsx'
 
-import Meta from "./Meta";
+import classes from './Renderer.module.css'
+import Meta from './Meta'
 
 export default function Renderer({ value, scrollRef, onScroll }) {
+  const { colorMode } = useColorMode()
+  const borderColor = useColorModeValue('gray.200', 'white.300')
+
   // parse markdown and extract frontmatter
   const { html, rawFrontMatter } = useMemo(() => {
-    const md = new MarkdownIt();
-    let rawFrontMatter;
+    const md = new MarkdownIt()
+    let rawFrontMatter
 
     // extract front matter
-    md.use(markdownItFrontMatter, (fm) => {
-      rawFrontMatter = fm;
-    });
+    md.use(markdownItFrontMatter, fm => {
+      rawFrontMatter = fm
+    })
 
     // render callout blocks
-    md.use(markdownItContainer, "callout", {
+    md.use(markdownItContainer, 'callout', {
       validate: function (params) {
-        return true;
+        return true
       },
       render: function (tokens, idx) {
         if (tokens[idx].nesting === 1) {
-          return '<div class="callout" style="border: 2px solid gold;">';
+          return `<div class="${classes.callout}">`
         } else {
-          return "</div>";
+          return '</div>'
         }
       },
-    });
+    })
 
     // handle table captions
-    md.use(markdownItTableCaptions);
+    md.use(markdownItTableCaptions)
 
-    const html = md.render(value);
+    const html = md.render(value)
 
-    return { html, rawFrontMatter };
-  }, [value]);
+    return { html, rawFrontMatter }
+  }, [value])
 
   // parse yaml frontmatter
   const frontMatter = useMemo(() => {
     try {
-      return yaml.load(rawFrontMatter);
+      return yaml.load(rawFrontMatter)
     } catch {
       // fallback to empty object
-      return {};
+      return {}
     }
-  }, [rawFrontMatter]);
-
-  const borderColor = useColorModeValue("gray.200", "white.300");
+  }, [rawFrontMatter])
 
   return (
     <Stack
@@ -66,7 +74,12 @@ export default function Renderer({ value, scrollRef, onScroll }) {
     >
       <Meta {...frontMatter} />
       <Divider />
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <div
+        className={clsx(classes.content, {
+          [classes.dark]: colorMode === 'dark',
+        })}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
     </Stack>
-  );
+  )
 }

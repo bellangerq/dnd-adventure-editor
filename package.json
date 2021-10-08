@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^1.6.9",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "clsx": "^1.1.1",
     "framer-motion": "^4",
     "js-yaml": "^4.1.0",
     "markdown-it": "^12.2.0",

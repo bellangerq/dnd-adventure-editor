@@ -11,7 +11,7 @@ cover: 'https://unsplash.com/462grgh353643rhtrje342'
 
 ## Titre niveau 2
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in eros interdum, dignissim dui eu, aliquet nulla. Quisque scelerisque justo non rutrum pellentesque. Donec porttitor mi et laoreet condimentum. Nulla nec magna dolor. Duis condimentum lorem ex, nec euismod justo facilisis vitae. Morbi metus dui, tincidunt quis tempus ac, imperdiet sit amet arcu. In lectus dolor, sagittis non fermentum non, viverra eget libero. Maecenas ullamcorper lobortis purus, ac dictum ipsum posuere id. Vestibulum eu mi pulvinar, mollis nibh in, feugiat felis. Donec at augue bibendum, hendrerit mi sit amet, mattis urna.
+Lorem ipsum dolor sit amet, [consectetur adipiscing](#) elit. Maecenas in eros interdum, dignissim dui eu, *aliquet nulla*. Quisque scelerisque justo non **rutrum pellentesque**. Donec porttitor mi et laoreet condimentum. \`Nulla nec\` magna dolor. Duis condimentum lorem ex, nec ~~euismod justo facilisis~~ vitae. Morbi metus dui, tincidunt quis tempus ac, imperdiet sit amet arcu. In lectus dolor, sagittis non fermentum non, viverra eget libero. Maecenas ullamcorper lobortis purus, ac dictum ipsum posuere id. Vestibulum eu mi pulvinar, mollis nibh in, feugiat felis. Donec at augue bibendum, hendrerit mi sit amet, mattis urna.
 
 ## Callouts
 
@@ -29,9 +29,28 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in eros interd
 Imperdiet sit amet arcu. In lectus dolor, sagittis non fermentum non
 :::
 
+## Images
+
+![pouet](https://picsum.photos/100/100)
+
+## Lists
+
+- Imperdiet sit amet arcu
+- Imperdiet sit amet arcu
+- Imperdiet sit amet arcu
+  - Imperdiet sit amet arcu
+  - Imperdiet sit amet arcu
+  - Imperdiet sit amet arcu
+
+1. Imperdiet sit amet arcu
+2. Imperdiet sit amet arcu
+    - Imperdiet sit amet arcu
+    - Imperdiet sit amet arcu
+3. Imperdiet sit amet arcu
+
 ## Tables
 
-Table: Environnement aléatoire
+Table: Environnements aléatoires
 
 | d4  | Environnement |
 | --- | ------------- |
@@ -42,15 +61,12 @@ Table: Environnement aléatoire
 
 ## Definition lists
 
-Lorem
-: ipsum dolor sit amet.
+**Lorem** : ipsum dolor sit amet.
 
-Ex
-: nec euismod justo facilisis vitae.
+**Ex** : nec euismod justo facilisis vitae.
 
-Morbi
-: metus dui, tincidunt quis tempus ac.
+**Morbi** : metus dui, tincidunt quis tempus ac.
 
-`;
+`
 
-export default defaultEditorValue;
+export default defaultEditorValue

@@ -85,8 +85,8 @@ export default function Home() {
         />
 
         <Grid
-          templateColumns={{ sm: '1fr', md: '1fr 1fr' }}
-          templateRows={{ sm: '1fr 1fr', md: '1fr' }}
+          templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+          templateRows={{ base: '1fr 1fr', md: '1fr' }}
           gap={4}
           flexGrow={1}
           height={0}
