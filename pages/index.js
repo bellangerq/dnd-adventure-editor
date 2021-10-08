@@ -8,6 +8,7 @@ import defaultValue from '../utils/default-editor-value'
 export default function Home() {
   const [value, setValue] = useState(defaultValue)
   const [disableScroll, setDisableScroll] = useState(false)
+  const [enableFocusMode, setEnableFocusMode] = useState(false)
   const [ignoreScroll, setIgnoreScroll] = useState(false)
   const editorRef = useRef()
   const rendererRef = useRef()
@@ -18,6 +19,10 @@ export default function Home() {
 
   const handleDisableScroll = () => {
     setDisableScroll(!disableScroll)
+  }
+
+  const handleToggleFocusMode = () => {
+    setEnableFocusMode(!enableFocusMode)
   }
 
   // TODO: extract synchronized scrolling into a hook
@@ -82,10 +87,17 @@ export default function Home() {
         <Toolbar
           disableScroll={disableScroll}
           onDisableScroll={handleDisableScroll}
+          enableFocusMode={enableFocusMode}
+          onToggleFocusMode={handleToggleFocusMode}
         />
 
+        {enableFocusMode}
+
         <Grid
-          templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+          templateColumns={{
+            base: '1fr',
+            md: enableFocusMode ? '1fr' : '1fr 1fr',
+          }}
           templateRows={{ base: '1fr 1fr', md: '1fr' }}
           gap={4}
           flexGrow={1}
@@ -101,13 +113,17 @@ export default function Home() {
             value={value}
             onChange={handleChange}
             scrollRef={editorRef}
-            onScroll={disableScroll ? null : handleTextareaScroll}
+            onScroll={
+              disableScroll || enableFocusMode ? null : handleTextareaScroll
+            }
           />
-          <Renderer
-            value={value}
-            scrollRef={rendererRef}
-            onScroll={disableScroll ? null : handleRendererScroll}
-          />
+          {!enableFocusMode && (
+            <Renderer
+              value={value}
+              scrollRef={rendererRef}
+              onScroll={disableScroll ? null : handleRendererScroll}
+            />
+          )}
         </Grid>
       </Container>
     </Flex>
