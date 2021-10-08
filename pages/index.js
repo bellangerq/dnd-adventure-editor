@@ -1,56 +1,67 @@
-import { useState, useRef } from "react";
-import { Heading, Button, Grid, Box, Container, Flex } from "@chakra-ui/react";
-
-import Editor from "../components/Editor";
-import Renderer from "../components/Renderer";
-import defaultValue from "../utils/default-editor-value";
+import { useState, useRef, useEffect } from 'react'
+import { Heading, Grid, Box, Container, Flex } from '@chakra-ui/react'
+import Toolbar from '../components/Toolbar'
+import Editor from '../components/Editor'
+import Renderer from '../components/Renderer'
+import defaultValue from '../utils/default-editor-value'
 
 export default function Home() {
-  const [value, setValue] = useState(defaultValue);
-  const [ignoreScroll, setIgnoreScroll] = useState(false);
-  const editorRef = useRef();
-  const rendererRef = useRef();
+  const [value, setValue] = useState(defaultValue)
+  const [disableScroll, setDisableScroll] = useState(false)
+  const [ignoreScroll, setIgnoreScroll] = useState(false)
+  const editorRef = useRef()
+  const rendererRef = useRef()
 
-  const handleChange = (value) => {
-    setValue(value);
-  };
+  const handleChange = value => {
+    setValue(value)
+  }
+
+  const handleDisableScroll = () => {
+    setDisableScroll(!disableScroll)
+  }
 
   // TODO: extract synchronized scrolling into a hook
-  const handleTextareaScroll = (event) => {
+  const handleTextareaScroll = event => {
     if (ignoreScroll) {
-      setIgnoreScroll(false);
-      return;
+      setIgnoreScroll(false)
+      return
     }
 
-    const { scrollTop, scrollHeight, clientHeight } = event.target;
-    const scrollTopMax = scrollHeight - clientHeight;
-    const ratio = scrollTop / scrollTopMax;
+    const { scrollTop, scrollHeight, clientHeight } = event.target
+    const scrollTopMax = scrollHeight - clientHeight
+    const ratio = scrollTop / scrollTopMax
 
     const rendererScrollTopMax =
-      rendererRef.current.scrollHeight - rendererRef.current.clientHeight;
-    const rendererTop = Math.round(rendererScrollTopMax * ratio);
+      rendererRef.current.scrollHeight - rendererRef.current.clientHeight
+    const rendererTop = Math.round(rendererScrollTopMax * ratio)
 
-    setIgnoreScroll(true);
-    rendererRef.current.scrollTop = rendererTop;
-  };
+    setIgnoreScroll(true)
+    rendererRef.current.scrollTop = rendererTop
+  }
 
-  const handleRendererScroll = (event) => {
+  const handleRendererScroll = event => {
     if (ignoreScroll) {
-      setIgnoreScroll(false);
-      return;
+      setIgnoreScroll(false)
+      return
     }
 
-    const { scrollTop, scrollHeight, clientHeight } = event.target;
-    const scrollTopMax = scrollHeight - clientHeight;
-    const ratio = scrollTop / scrollTopMax;
+    const { scrollTop, scrollHeight, clientHeight } = event.target
+    const scrollTopMax = scrollHeight - clientHeight
+    const ratio = scrollTop / scrollTopMax
 
     const editorScrollTopMax =
-      editorRef.current.scrollHeight - editorRef.current.clientHeight;
-    const editorTop = Math.round(editorScrollTopMax * ratio);
+      editorRef.current.scrollHeight - editorRef.current.clientHeight
+    const editorTop = Math.round(editorScrollTopMax * ratio)
 
-    setIgnoreScroll(true);
-    editorRef.current.scrollTop = editorTop;
-  };
+    setIgnoreScroll(true)
+    editorRef.current.scrollTop = editorTop
+  }
+
+  useEffect(() => {
+    setDisableScroll(
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+  }, [])
 
   return (
     <Flex height="100vh" direction="column">
@@ -68,26 +79,21 @@ export default function Home() {
         display="flex"
         flexDirection="column"
       >
-        <Flex justify="end" marginBottom={4}>
-          <Button
-            className="no-print"
-            type="button"
-            onClick={typeof window === "undefined" ? null : window.print}
-          >
-            Imprimer
-          </Button>
-        </Flex>
+        <Toolbar
+          disableScroll={disableScroll}
+          onDisableScroll={handleDisableScroll}
+        />
 
         <Grid
-          templateColumns={{ sm: "1fr", md: "1fr 1fr" }}
-          templateRows={{ sm: "1fr 1fr", md: "1fr" }}
+          templateColumns={{ sm: '1fr', md: '1fr 1fr' }}
+          templateRows={{ sm: '1fr 1fr', md: '1fr' }}
           gap={4}
           flexGrow={1}
           height={0}
           sx={{
-            "@media print": {
-              height: "initial",
-              display: "block",
+            '@media print': {
+              height: 'initial',
+              display: 'block',
             },
           }}
         >
@@ -95,15 +101,15 @@ export default function Home() {
             value={value}
             onChange={handleChange}
             scrollRef={editorRef}
-            onScroll={handleTextareaScroll}
+            onScroll={disableScroll ? null : handleTextareaScroll}
           />
           <Renderer
             value={value}
             scrollRef={rendererRef}
-            onScroll={handleRendererScroll}
+            onScroll={disableScroll ? null : handleRendererScroll}
           />
         </Grid>
       </Container>
     </Flex>
-  );
+  )
 }

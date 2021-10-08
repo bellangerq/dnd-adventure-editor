@@ -18,3 +18,6 @@ yarn dev
 - style renderer
 - style meta
 - style for printing
+- how to page
+  - print to pdf
+  - render elements (link to markdown doc + custom elements help...)
