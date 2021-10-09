@@ -98,7 +98,10 @@ export default function Home() {
             base: '1fr',
             md: enableFocusMode ? '1fr' : '1fr 1fr',
           }}
-          templateRows={{ base: '1fr 1fr', md: '1fr' }}
+          templateRows={{
+            base: enableFocusMode ? '1fr' : '1fr 1fr',
+            md: '1fr',
+          }}
           gap={4}
           flexGrow={1}
           height={0}
