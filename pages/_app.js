@@ -8,18 +8,18 @@ import { useEffect } from 'react'
 function App({ Component, pageProps }) {
   useEffect(() => {
     const doPrintEl = document.querySelector('.do-print')
-    const ancestors = []
 
+    // recursively get ancestors and add the `do-print-ancestor` class to each element
     let el = doPrintEl
     while (true) {
       el = el.parentElement
       if (!el) {
         break
       }
-      ancestors.push(el)
       el.classList.add('do-print-ancestor')
     }
   }, [])
+
   return (
     <>
       <Head>
