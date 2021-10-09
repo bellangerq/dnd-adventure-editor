@@ -11,7 +11,6 @@ export default function Toolbar({
     <Flex
       justify="space-between"
       marginBottom={4}
-      className="no-print"
       flexWrap={{ base: 'wrap', md: 'nowrap' }}
     >
       <ButtonGroup

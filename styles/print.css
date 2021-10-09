@@ -1,5 +1,5 @@
 @media print {
-  .no-print {
-    display: none;
+  *:not(.do-print-ancestor, .do-print, .do-print *) {
+    display: none !important;
   }
 }

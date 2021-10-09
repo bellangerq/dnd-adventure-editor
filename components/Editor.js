@@ -11,7 +11,7 @@ export default function Editor({ onChange, value, scrollRef, onScroll }) {
   }
 
   return (
-    <FormControl id="editor" className="no-print">
+    <FormControl id="editor">
       <VisuallyHidden>
         <FormLabel>Entrée</FormLabel>
       </VisuallyHidden>
