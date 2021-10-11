@@ -27,6 +27,10 @@ export default function Home() {
     setEnableFocusMode(!enableFocusMode)
   }
 
+  const handleReset = () => {
+    setValue(defaultValue)
+  }
+
   // TODO: extract synchronized scrolling into a hook
   const handleTextareaScroll = event => {
     if (ignoreScroll) {
@@ -100,6 +104,7 @@ export default function Home() {
           onDisableScroll={handleDisableScroll}
           enableFocusMode={enableFocusMode}
           onToggleFocusMode={handleToggleFocusMode}
+          onReset={handleReset}
         />
 
         {enableFocusMode}
