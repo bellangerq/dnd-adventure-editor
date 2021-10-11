@@ -71,6 +71,7 @@ export default function Renderer({ value, scrollRef, onScroll }) {
       overflow="auto"
       ref={scrollRef}
       onScroll={onScroll}
+      className="do-print"
     >
       <Meta {...frontMatter} />
       <Divider />
