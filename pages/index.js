@@ -5,6 +5,8 @@ import Editor from '../components/Editor'
 import Renderer from '../components/Renderer'
 import defaultValue from '../utils/default-editor-value'
 
+const STORAGE_KEY = 'dnd-adventure-editor'
+
 export default function Home() {
   const [value, setValue] = useState(defaultValue)
   const [disableScroll, setDisableScroll] = useState(false)
@@ -66,7 +68,16 @@ export default function Home() {
     setDisableScroll(
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     )
+
+    const savedAdventure = localStorage.getItem(STORAGE_KEY)
+    if (savedAdventure) {
+      setValue(savedAdventure)
+    }
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, value)
+  }, [value])
 
   return (
     <Flex height="100vh" direction="column">

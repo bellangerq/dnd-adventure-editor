@@ -20,6 +20,6 @@ yarn dev
 ## Features
 
 - [ ] Help page (render markdown and custom elements, print to pdf...).
-- [ ] Save in localstorage
+- [x] Save in localstorage
 - [ ] Load default / reset
 - [ ] Paste images
