@@ -1,5 +1,11 @@
 import { useState } from 'react'
-import { Button, Flex, ButtonGroup, VisuallyHidden } from '@chakra-ui/react'
+import {
+  Button,
+  Flex,
+  ButtonGroup,
+  VisuallyHidden,
+  useBoolean,
+} from '@chakra-ui/react'
 import {
   CheckIcon,
   CloseIcon,
@@ -8,6 +14,7 @@ import {
 } from '@chakra-ui/icons'
 
 import Confirm from './Confirm'
+import Help from './Help'
 
 export default function Toolbar({
   disableScroll,
@@ -16,31 +23,22 @@ export default function Toolbar({
   onToggleFocusMode,
   onReset,
 }) {
-  const [showConfirm, setShowConfirm] = useState(false)
-
-  const closeConfirm = () => {
-    setShowConfirm(false)
-  }
-
-  const openConfirm = () => {
-    setShowConfirm(true)
-  }
+  const [showConfirm, { off: closeConfirm, on: openConfirm }] = useBoolean()
+  const [showHelp, { off: closeHelp, on: openHelp }] = useBoolean()
 
   const handleConfirm = () => {
-    setShowConfirm(false)
+    closeConfirm()
     onReset()
   }
 
   return (
     <>
+      <Help isOpen={showHelp} onClose={closeHelp} />
+
       <Confirm
         isOpen={showConfirm}
         onClose={closeConfirm}
         onConfirm={handleConfirm}
-        title="Reset default content"
-        body="Reseting default content will erase your adventure. Are you sure you want to proceed?"
-        confirm="Reset the adventure"
-        cancel="Cancel"
       />
       <Flex
         justify="space-between"
@@ -91,7 +89,7 @@ export default function Toolbar({
           <Button
             type="button"
             variant="outline"
-            disabled
+            onClick={openHelp}
             rightIcon={<QuestionIcon />}
           >
             How to

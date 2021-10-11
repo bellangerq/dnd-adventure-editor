@@ -7,30 +7,31 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Text,
+  useBreakpointValue,
 } from '@chakra-ui/react'
 
-export default function Confirm({
-  isOpen,
-  onClose,
-  onConfirm,
-  title,
-  body,
-  cancel,
-  confirm,
-}) {
+export default function Confirm({ isOpen, onClose, onConfirm }) {
+  const modalSize = useBreakpointValue({ base: 'full', sm: 'sm' })
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal size={modalSize} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{title}</ModalHeader>
+        <ModalHeader>Reset default content</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>{body}</ModalBody>
+        <ModalBody>
+          <Text>
+            Reseting default content will erase your adventure. Are you sure you
+            want to proceed?
+          </Text>
+        </ModalBody>
 
         <ModalFooter>
-          <Button onClick={onClose} variant="outline" marginRight={2}>
-            {cancel}
+          <Button onClick={onClose} variant="outline" marginRight={4}>
+            Cancel
           </Button>
-          <Button onClick={onConfirm}>{confirm}</Button>
+          <Button onClick={onConfirm}>Reset the adventure</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
