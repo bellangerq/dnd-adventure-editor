@@ -6,7 +6,7 @@ date: 2021-09-23
 author:
   name: 'John Doe'
   contact: 'john.doe@example.com'
-cover: 'https://unsplash.com/462grgh353643rhtrje342'
+cover: 'https://images.unsplash.com/photo-1633887996583-d7681d6dd4ce'
 ---
 
 ## Titre niveau 2

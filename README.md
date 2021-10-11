@@ -14,9 +14,8 @@ yarn dev
 
 ## To do
 
-- Meta styles
-- Responsive Toolbar styles
 - Print styles
+- Responsive Toolbar styles
 
 ## Features
 

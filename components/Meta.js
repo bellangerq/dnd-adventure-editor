@@ -1,4 +1,4 @@
-import { UnorderedList, ListItem } from "@chakra-ui/layout";
+import { Box, Divider, Image, Heading, Text } from '@chakra-ui/react'
 
 /**
  * @param {Object} [props]
@@ -20,20 +20,27 @@ export default function Meta({
   cover,
 }) {
   return (
-    <UnorderedList spacing={2}>
-      {title && <ListItem>{title}</ListItem>}
-      {description && <ListItem>{description}</ListItem>}
-      {lang && <ListItem>{lang}</ListItem>}
-      {/* {date && <ListItem>{date.toString()}</ListItem>} */}
-      {author && (
-        <ListItem>
-          <UnorderedList>
-            <ListItem>{author.name}</ListItem>
-            <ListItem>{author.contact}</ListItem>
-          </UnorderedList>
-        </ListItem>
+    <Box
+      textAlign="center"
+      sx={{
+        breakAfter: 'always',
+        pageBreakAfter: 'always',
+      }}
+    >
+      <Heading as="h1" marginBottom={2}>
+        {title}
+      </Heading>
+      <Text as="small" fontSize="sm">
+        By {author.name} ({author.contact})
+      </Text>
+      <Text fontSize="lg" marginTop={4} marginBottom={4}>
+        {description}
+      </Text>
+      {cover ? (
+        <Image borderRadius="md" src={cover} alt="" />
+      ) : (
+        <Divider marginTop={8} />
       )}
-      {cover && <ListItem>{cover}</ListItem>}
-    </UnorderedList>
-  );
+    </Box>
+  )
 }

@@ -4,12 +4,7 @@ import markdownItFrontMatter from 'markdown-it-front-matter'
 import markdownItContainer from 'markdown-it-container'
 import markdownItTableCaptions from 'markdown-it-table-captions'
 import yaml from 'js-yaml'
-import {
-  Stack,
-  Divider,
-  useColorModeValue,
-  useColorMode,
-} from '@chakra-ui/react'
+import { Stack, useColorModeValue, useColorMode } from '@chakra-ui/react'
 import clsx from 'clsx'
 
 import classes from './Renderer.module.css'
@@ -74,7 +69,6 @@ export default function Renderer({ value, scrollRef, onScroll }) {
       className="do-print"
     >
       <Meta {...frontMatter} />
-      <Divider />
       <div
         className={clsx(classes.content, {
           [classes.dark]: colorMode === 'dark',
