@@ -14,12 +14,10 @@ yarn dev
 
 ## To do
 
-- Print styles
-- Responsive Toolbar styles
-
-## Features
-
-- [ ] Help page (render markdown and custom elements, print to pdf...).
+- [x] Help page (render markdown and custom elements, print to pdf...).
 - [x] Save in localstorage
-- [ ] Load default / reset
+- [x] Load default / reset
+- [ ] Responsive Toolbar styles
+- [ ] Wording
+- [ ] Print styles
 - [ ] Paste images
