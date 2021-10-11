@@ -2,4 +2,12 @@
   *:not(.do-print-ancestor, .do-print, .do-print *) {
     display: none !important;
   }
+
+  .do-print-ancestor {
+    display: block !important;
+  }
+
+  a[href]:after {
+    content: ' (' attr(href) ')';
+  }
 }

@@ -22,10 +22,7 @@ export default function Meta({
   return (
     <Box
       textAlign="center"
-      sx={{
-        breakAfter: 'always',
-        pageBreakAfter: 'always',
-      }}
+      sx={{ '@media print': { pageBreakAfter: 'always' } }}
     >
       <Heading as="h1" marginBottom={2}>
         {title}

@@ -67,6 +67,12 @@ export default function Renderer({ value, scrollRef, onScroll }) {
       ref={scrollRef}
       onScroll={onScroll}
       className="do-print"
+      sx={{
+        '@media print': {
+          display: 'block',
+          border: 'none',
+        },
+      }}
     >
       <Meta {...frontMatter} />
       <div
