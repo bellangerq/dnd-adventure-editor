@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Heading, Grid, Box, Container, Flex } from '@chakra-ui/react'
-import Toolbar from '../components/Toolbar'
+import Menu from '../components/Menu'
 import Editor from '../components/Editor'
 import Renderer from '../components/Renderer'
 import defaultValue from '../utils/default-editor-value'
@@ -109,22 +109,25 @@ export default function Home() {
   }, [enableFocusMode])
 
   return (
-    <Flex height="100vh" direction="column">
-      <Box as="header" marginTop={4}>
-        <Heading as="h1" textAlign="center">
-          DnD adventure editor
-        </Heading>
-      </Box>
-
-      <Container
-        as="main"
-        maxWidth="container.xl"
-        padding={4}
-        flexGrow={1}
-        display="flex"
-        flexDirection="column"
+    <Container
+      maxWidth="container.xl"
+      display="flex"
+      flexDirection="column"
+      height="100vh"
+      padding={{ base: 2, sm: 4 }}
+    >
+      <Flex
+        as="header"
+        marginTop={{ base: 0, sm: 4 }}
+        marginBottom={4}
+        alignItems="center"
+        justifyContent="space-between"
+        flexWrap="wrap"
+        sx={{ gap: 12 }}
       >
-        <Toolbar
+        <Heading as="h1">D&D AE</Heading>
+
+        <Menu
           disableScroll={disableScroll}
           onDisableScroll={handleDisableScroll}
           enableFocusMode={enableFocusMode}
@@ -133,43 +136,44 @@ export default function Home() {
           onMetaSubmit={handleMetaSubmit}
           meta={meta}
         />
+      </Flex>
 
-        <Grid
-          templateColumns={{
-            base: '1fr',
-            md: enableFocusMode ? '1fr' : '1fr 1fr',
-          }}
-          templateRows={{
-            base: enableFocusMode ? '1fr' : '1fr 1fr',
-            md: '1fr',
-          }}
-          gap={4}
-          flexGrow={1}
-          height={0}
-          sx={{
-            '@media print': {
-              height: 'initial',
-              display: 'block',
-            },
-          }}
-        >
-          <Editor
-            value={value}
-            onChange={handleChange}
-            scrollRef={editorRef}
-            onScroll={
-              disableScroll || enableFocusMode ? null : handleTextareaScroll
-            }
-          />
-          <Renderer
-            value={value}
-            meta={meta}
-            scrollRef={rendererRef}
-            onScroll={disableScroll ? null : handleRendererScroll}
-            hidden={enableFocusMode}
-          />
-        </Grid>
-      </Container>
-    </Flex>
+      <Grid
+        as="main"
+        flexGrow={1}
+        templateColumns={{
+          base: '1fr',
+          md: enableFocusMode ? '1fr' : '1fr 1fr',
+        }}
+        templateRows={{
+          base: enableFocusMode ? '1fr' : '1fr 1fr',
+          md: '1fr',
+        }}
+        gap={4}
+        height={0}
+        sx={{
+          '@media print': {
+            height: 'initial',
+            display: 'block',
+          },
+        }}
+      >
+        <Editor
+          value={value}
+          onChange={handleChange}
+          scrollRef={editorRef}
+          onScroll={
+            disableScroll || enableFocusMode ? null : handleTextareaScroll
+          }
+        />
+        <Renderer
+          value={value}
+          meta={meta}
+          scrollRef={rendererRef}
+          onScroll={disableScroll ? null : handleRendererScroll}
+          hidden={enableFocusMode}
+        />
+      </Grid>
+    </Container>
   )
 }
