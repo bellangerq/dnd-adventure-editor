@@ -99,6 +99,7 @@ export default function Menu({
               value="enableScroll"
               onClick={onDisableScroll}
               closeOnSelect={false}
+              isDisabled={enableFocusMode}
             >
               Synchronized scroll
             </MenuItemOption>

@@ -8,17 +8,15 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Text,
   useBreakpointValue,
   FormControl,
   FormLabel,
-  FormErrorMessage,
   FormHelperText,
   Input,
   Textarea,
   Grid,
-  GridItem,
   Stack,
+  Image,
 } from '@chakra-ui/react'
 
 const DEFAULT_FIELD_VALUES = {
@@ -91,31 +89,46 @@ export default function MetaModal({
               />
             </FormControl>
 
-            <Grid as="fieldset" templateColumns="1fr 1fr" gap={4}>
-              <GridItem as="legend">Author</GridItem>
-              <FormControl id="meta-author-name" isRequired>
-                <FormLabel>Name</FormLabel>
-                <Input
-                  value={fields.authorName}
-                  onChange={onChange('authorName')}
-                />
-              </FormControl>
-              <FormControl id="meta-author-contact" isRequired>
-                <FormLabel>Contact</FormLabel>
-                <Input
-                  value={fields.authorContact}
-                  onChange={onChange('authorContact')}
-                />
-              </FormControl>
-            </Grid>
+            <fieldset>
+              <legend>Author</legend>
+              <Grid templateColumns="1fr 1fr" gap={4}>
+                <FormControl id="meta-author-name" isRequired>
+                  <FormLabel>Name</FormLabel>
+                  <Input
+                    value={fields.authorName}
+                    onChange={onChange('authorName')}
+                  />
+                </FormControl>
+                <FormControl id="meta-author-contact" isRequired>
+                  <FormLabel>Contact</FormLabel>
+                  <Input
+                    value={fields.authorContact}
+                    onChange={onChange('authorContact')}
+                  />
+                </FormControl>
+              </Grid>
+            </fieldset>
 
             <FormControl id="meta-cover">
               <FormLabel>Cover URL</FormLabel>
-              <Input
-                value={fields.coverUrl}
-                onChange={onChange('coverUrl')}
-                type="url"
-              />
+              <Grid
+                alignItems="center"
+                templateColumns="1fr var(--chakra-sizes-10)"
+                gap={4}
+              >
+                <Input
+                  value={fields.coverUrl}
+                  onChange={onChange('coverUrl')}
+                  type="url"
+                />
+
+                <Image
+                  borderRadius={4}
+                  src={fields.coverUrl}
+                  alt=""
+                  objectFit="cover"
+                />
+              </Grid>
               <FormHelperText>URL pointing to an image.</FormHelperText>
             </FormControl>
           </Stack>
