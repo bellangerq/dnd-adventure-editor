@@ -17,7 +17,7 @@ yarn dev
 - [x] Help page (render markdown and custom elements, print to pdf...).
 - [x] Save in localstorage
 - [x] Load default / reset
-- [ ] Responsive Toolbar styles
+- [x] Responsive Menu styles
 - [x] Fix frontmatter editing
 - [ ] Wording
 - [ ] Print styles

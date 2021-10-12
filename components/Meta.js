@@ -18,7 +18,15 @@ export default function Meta({
   return (
     <Box
       textAlign="center"
-      sx={{ '@media print': { pageBreakAfter: 'always' } }}
+      sx={{
+        '@media print': {
+          pageBreakAfter: 'always',
+          height: '90vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        },
+      }}
     >
       <Heading as="h1" marginBottom={2}>
         {title}
@@ -30,9 +38,17 @@ export default function Meta({
         {description}
       </Text>
       {coverUrl ? (
-        <Image borderRadius="md" src={coverUrl} alt="" />
+        <Image borderRadius="md" display="inline-block" src={coverUrl} alt="" />
       ) : (
-        <Divider marginTop={8} />
+        <Divider
+          marginTop={8}
+          className="no-print"
+          sx={{
+            '@media print': {
+              display: 'none',
+            },
+          }}
+        />
       )}
     </Box>
   )
