@@ -1,28 +1,20 @@
 import { useMemo } from 'react'
 import MarkdownIt from 'markdown-it'
-import markdownItFrontMatter from 'markdown-it-front-matter'
 import markdownItContainer from 'markdown-it-container'
 import markdownItTableCaptions from 'markdown-it-table-captions'
-import yaml from 'js-yaml'
 import { Stack, useColorModeValue, useColorMode } from '@chakra-ui/react'
 import clsx from 'clsx'
 
 import classes from './Renderer.module.css'
 import Meta from './Meta'
 
-export default function Renderer({ value, scrollRef, onScroll, hidden }) {
+export default function Renderer({ value, scrollRef, onScroll, hidden, meta }) {
   const { colorMode } = useColorMode()
   const borderColor = useColorModeValue('gray.200', 'white.300')
 
-  // parse markdown and extract frontmatter
-  const { html, rawFrontMatter } = useMemo(() => {
+  // parse markdown
+  const html = useMemo(() => {
     const md = new MarkdownIt()
-    let rawFrontMatter
-
-    // extract front matter
-    md.use(markdownItFrontMatter, fm => {
-      rawFrontMatter = fm
-    })
 
     // render callout blocks
     md.use(markdownItContainer, 'callout', {
@@ -43,18 +35,8 @@ export default function Renderer({ value, scrollRef, onScroll, hidden }) {
 
     const html = md.render(value)
 
-    return { html, rawFrontMatter }
+    return html
   }, [value])
-
-  // parse yaml frontmatter
-  const frontMatter = useMemo(() => {
-    try {
-      return yaml.load(rawFrontMatter)
-    } catch {
-      // fallback to empty object
-      return {}
-    }
-  }, [rawFrontMatter])
 
   return (
     <Stack
@@ -77,7 +59,7 @@ export default function Renderer({ value, scrollRef, onScroll, hidden }) {
         }),
       }}
     >
-      <Meta {...frontMatter} />
+      {meta && <Meta {...meta} />}
       <div
         className={clsx(classes.content, {
           [classes.dark]: colorMode === 'dark',

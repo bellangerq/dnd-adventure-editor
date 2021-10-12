@@ -12,6 +12,7 @@ export default function Home() {
   const [disableScroll, setDisableScroll] = useState(false)
   const [enableFocusMode, setEnableFocusMode] = useState(false)
   const [ignoreScroll, setIgnoreScroll] = useState(false)
+  const [meta, setMeta] = useState(null)
   const editorRef = useRef()
   const rendererRef = useRef()
 
@@ -29,6 +30,7 @@ export default function Home() {
 
   const handleReset = () => {
     setValue(defaultValue)
+    setMeta(null)
   }
 
   // TODO: extract synchronized scrolling into a hook
@@ -68,20 +70,25 @@ export default function Home() {
     editorRef.current.scrollTop = editorTop
   }
 
+  const handleMetaSubmit = data => {
+    setMeta(data)
+  }
+
   useEffect(() => {
     setDisableScroll(
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     )
 
-    const savedAdventure = localStorage.getItem(STORAGE_KEY)
+    const savedAdventure = JSON.parse(localStorage.getItem(STORAGE_KEY))
     if (savedAdventure) {
-      setValue(savedAdventure)
+      setValue(savedAdventure.markdown)
+      setMeta(savedAdventure.meta)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, value)
-  }, [value])
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ markdown: value, meta }))
+  }, [value, meta])
 
   useEffect(() => {
     const doPrintEl = document.querySelector('.do-print')
@@ -123,6 +130,8 @@ export default function Home() {
           enableFocusMode={enableFocusMode}
           onToggleFocusMode={handleToggleFocusMode}
           onReset={handleReset}
+          onMetaSubmit={handleMetaSubmit}
+          meta={meta}
         />
 
         <Grid
@@ -154,6 +163,7 @@ export default function Home() {
           />
           <Renderer
             value={value}
+            meta={meta}
             scrollRef={rendererRef}
             onScroll={disableScroll ? null : handleRendererScroll}
             hidden={enableFocusMode}

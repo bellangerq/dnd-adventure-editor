@@ -5,16 +5,19 @@ import {
   ButtonGroup,
   VisuallyHidden,
   useBoolean,
+  useDisclosure,
 } from '@chakra-ui/react'
 import {
   CheckIcon,
   CloseIcon,
   DeleteIcon,
   QuestionIcon,
+  EditIcon,
 } from '@chakra-ui/icons'
 
 import Confirm from './Confirm'
 import Help from './Help'
+import MetaModal from './MetaModal'
 
 export default function Toolbar({
   disableScroll,
@@ -22,13 +25,25 @@ export default function Toolbar({
   enableFocusMode,
   onToggleFocusMode,
   onReset,
+  onMetaSubmit,
+  meta,
 }) {
   const [showConfirm, { off: closeConfirm, on: openConfirm }] = useBoolean()
   const [showHelp, { off: closeHelp, on: openHelp }] = useBoolean()
+  const {
+    isOpen: showMeta,
+    onOpen: openMeta,
+    onClose: closeMeta,
+  } = useDisclosure()
 
   const handleConfirm = () => {
     closeConfirm()
     onReset()
+  }
+
+  const handleMeta = data => {
+    closeMeta()
+    onMetaSubmit(data)
   }
 
   return (
@@ -40,6 +55,14 @@ export default function Toolbar({
         onClose={closeConfirm}
         onConfirm={handleConfirm}
       />
+
+      <MetaModal
+        isOpen={showMeta}
+        onClose={closeMeta}
+        onConfirm={handleMeta}
+        defaultValues={meta}
+      />
+
       <Flex
         justify="space-between"
         marginBottom={4}
@@ -66,6 +89,7 @@ export default function Toolbar({
             </VisuallyHidden>
             Synchronized scroll
           </Button>
+
           <Button
             type="button"
             onClick={onToggleFocusMode}
@@ -78,6 +102,7 @@ export default function Toolbar({
             </VisuallyHidden>
             Focus mode
           </Button>
+
           <Button
             type="button"
             onClick={openConfirm}
@@ -86,6 +111,7 @@ export default function Toolbar({
           >
             Reset
           </Button>
+
           <Button
             type="button"
             variant="outline"
@@ -94,7 +120,17 @@ export default function Toolbar({
           >
             How to
           </Button>
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={openMeta}
+            rightIcon={<EditIcon />}
+          >
+            Edit first page
+          </Button>
         </ButtonGroup>
+
         <Button
           type="button"
           onClick={typeof window === 'undefined' ? null : window.print}
