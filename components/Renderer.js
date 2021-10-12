@@ -10,7 +10,7 @@ import clsx from 'clsx'
 import classes from './Renderer.module.css'
 import Meta from './Meta'
 
-export default function Renderer({ value, scrollRef, onScroll }) {
+export default function Renderer({ value, scrollRef, onScroll, hidden }) {
   const { colorMode } = useColorMode()
   const borderColor = useColorModeValue('gray.200', 'white.300')
 
@@ -72,6 +72,9 @@ export default function Renderer({ value, scrollRef, onScroll }) {
           display: 'block',
           border: 'none',
         },
+        ...(hidden && {
+          display: 'none',
+        }),
       }}
     >
       <Meta {...frontMatter} />

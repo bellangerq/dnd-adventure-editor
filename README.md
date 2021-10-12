@@ -18,6 +18,7 @@ yarn dev
 - [x] Save in localstorage
 - [x] Load default / reset
 - [ ] Responsive Toolbar styles
+- [ ] Fix frontmatter editing
 - [ ] Wording
 - [ ] Print styles
 - [ ] Paste images

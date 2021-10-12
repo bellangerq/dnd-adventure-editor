@@ -83,10 +83,28 @@ export default function Home() {
     localStorage.setItem(STORAGE_KEY, value)
   }, [value])
 
+  useEffect(() => {
+    const doPrintEl = document.querySelector('.do-print')
+
+    if (!doPrintEl) {
+      return
+    }
+
+    // recursively get ancestors and add the `do-print-ancestor` class to each element
+    let el = doPrintEl
+    while (true) {
+      el = el.parentElement
+      if (!el) {
+        break
+      }
+      el.classList.add('do-print-ancestor')
+    }
+  }, [enableFocusMode])
+
   return (
     <Flex height="100vh" direction="column">
       <Box as="header" marginTop={4}>
-        <Heading as="h1" className="no-print" textAlign="center">
+        <Heading as="h1" textAlign="center">
           DnD adventure editor
         </Heading>
       </Box>
@@ -106,8 +124,6 @@ export default function Home() {
           onToggleFocusMode={handleToggleFocusMode}
           onReset={handleReset}
         />
-
-        {enableFocusMode}
 
         <Grid
           templateColumns={{
@@ -136,13 +152,12 @@ export default function Home() {
               disableScroll || enableFocusMode ? null : handleTextareaScroll
             }
           />
-          {!enableFocusMode && (
-            <Renderer
-              value={value}
-              scrollRef={rendererRef}
-              onScroll={disableScroll ? null : handleRendererScroll}
-            />
-          )}
+          <Renderer
+            value={value}
+            scrollRef={rendererRef}
+            onScroll={disableScroll ? null : handleRendererScroll}
+            hidden={enableFocusMode}
+          />
         </Grid>
       </Container>
     </Flex>
