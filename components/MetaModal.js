@@ -8,6 +8,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Heading,
   useBreakpointValue,
   FormControl,
   FormLabel,
@@ -69,7 +70,11 @@ export default function MetaModal({
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Edit meta</ModalHeader>
+        <ModalHeader>
+          <Heading as="h2" fontSize="2xl">
+            Edit first page
+          </Heading>
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Stack

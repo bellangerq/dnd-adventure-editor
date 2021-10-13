@@ -7,9 +7,16 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Heading,
   Text,
+  List,
+  UnorderedList,
+  ListItem,
+  Link,
+  Code,
   useBreakpointValue,
 } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 export default function Help({ isOpen, onClose, finalFocusRef }) {
   const modalSize = useBreakpointValue({ base: 'full', sm: 'xl' })
@@ -23,25 +30,90 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>How to write</ModalHeader>
+        <ModalHeader>
+          <Heading as="h2" fontSize="2xl">
+            Help
+          </Heading>
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text>
-            Officia dolore qui proident duis dolore aliqua pariatur Lorem elit
-            laboris eu sint reprehenderit consequat. Dolor anim velit enim sunt
-            esse ex. Veniam pariatur duis est fugiat exercitation in. Sunt
-            proident eiusmod voluptate Lorem reprehenderit magna consectetur
-            proident irure culpa eu Lorem tempor incididunt. Nulla eiusmod ex
-            elit Lorem reprehenderit magna tempor exercitation qui. Quis eu sint
-            officia eiusmod.
-          </Text>
-          <Text>
-            Commodo voluptate sit ullamco fugiat. Sint eiusmod veniam nisi
-            nostrud laboris duis eu laboris amet dolor mollit. Cillum
-            exercitation officia occaecat consequat ea magna eu ad laboris nisi
-            incididunt. Ipsum id nulla irure proident pariatur tempor aute
-            dolore commodo qui cupidatat.
-          </Text>
+          <List as="ol" spacing={8}>
+            <ListItem>
+              <Heading as="h3" fontSize="xl" marginBottom={2}>
+                Adventure details
+              </Heading>
+              <Text>
+                Start by giving your new adventure details like a title and a
+                description. Select "<strong>Edit first page</strong>" in the
+                main menu and fill the form in. It will make your adventure
+                looks cooler!
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Heading as="h3" fontSize="xl" marginBottom={2}>
+                Writing main content
+              </Heading>
+              <Text>
+                Content is written in Markdown. It follows the standard{' '}
+                <Link
+                  href="https://www.markdownguide.org/cheat-sheet/"
+                  isExternal
+                  color="pink"
+                >
+                  Markdown guidelines <ExternalLinkIcon />
+                </Link>{' '}
+                and implements 2 new custom block types:
+              </Text>
+              <UnorderedList spacing={4} marginTop={2}>
+                <ListItem>
+                  <Text>
+                    <strong>Callout</strong>: renders a callout to emphasize a
+                    part in your adventure. Useful for incoming encounters,
+                    specific location's description or secret DM information.
+                  </Text>
+                  <Code
+                    colorScheme="grey"
+                    marginTop={2}
+                    display="block"
+                    whiteSpace="pre"
+                    children={`:::
+                      pouet
+                    :::`}
+                  />
+                </ListItem>
+                <ListItem>
+                  <Text>
+                    <strong>Captioned table</strong>: renders a table with a
+                    caption. Useful to generate random elements for your
+                    adventure.
+                  </Text>
+                  <Code
+                    colorScheme="grey"
+                    marginTop={2}
+                    display="block"
+                    whiteSpace="pre"
+                    children={`Table: Race of character
+
+                    | d4 | Race     |
+                    | -- | -------- |
+                    | 1  | Dwarf    |
+                    | 2  | Elf      |
+                    | 3  | Halfling |
+                    | 4  | Human    |`}
+                  />
+                </ListItem>
+              </UnorderedList>
+            </ListItem>
+            <ListItem>
+              <Heading as="h3" fontSize="xl" marginBottom={2}>
+                Download as PDF
+              </Heading>
+              <Text>
+                Select "<strong>Download</strong>" in the main menu to download
+                the printable PDF.
+              </Text>
+            </ListItem>
+          </List>
         </ModalBody>
 
         <ModalFooter>
