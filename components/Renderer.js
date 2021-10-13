@@ -7,6 +7,7 @@ import clsx from 'clsx'
 
 import classes from './Renderer.module.css'
 import Meta from './Meta'
+import md from '../utils/markdown-renderer'
 
 export default function Renderer({ value, scrollRef, onScroll, hidden, meta }) {
   const { colorMode } = useColorMode()
@@ -14,25 +15,6 @@ export default function Renderer({ value, scrollRef, onScroll, hidden, meta }) {
 
   // parse markdown
   const html = useMemo(() => {
-    const md = new MarkdownIt()
-
-    // render callout blocks
-    md.use(markdownItContainer, 'callout', {
-      validate: function (params) {
-        return true
-      },
-      render: function (tokens, idx) {
-        if (tokens[idx].nesting === 1) {
-          return `<div class="${classes.callout}">`
-        } else {
-          return '</div>'
-        }
-      },
-    })
-
-    // handle table captions
-    md.use(markdownItTableCaptions)
-
     const html = md.render(value)
 
     return html

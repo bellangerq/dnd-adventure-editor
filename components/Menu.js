@@ -28,6 +28,7 @@ export default function Menu({
   onToggleFocusMode,
   onReset,
   onMetaSubmit,
+  onExport,
   meta,
 }) {
   const [showConfirm, { off: closeConfirm, on: openConfirm }] = useBoolean()
@@ -83,11 +84,8 @@ export default function Menu({
           <MenuItem onClick={openConfirm} icon={<DeleteIcon />}>
             Reset
           </MenuItem>
-          <MenuItem
-            onClick={typeof window === 'undefined' ? null : window.print}
-            icon={<DownloadIcon />}
-          >
-            Export
+          <MenuItem onClick={onExport} icon={<DownloadIcon />}>
+            Download
           </MenuItem>
           <MenuDivider />
           <MenuOptionGroup

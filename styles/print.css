@@ -3,6 +3,11 @@
     font-size: 12pt !important;
   }
 
+  html,
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+
   *:not(.do-print-ancestor, .do-print, .do-print *) {
     display: none !important;
   }

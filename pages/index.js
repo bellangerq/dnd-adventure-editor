@@ -74,6 +74,27 @@ export default function Home() {
     setMeta(data)
   }
 
+  const handleExport = async () => {
+    console.log('Requesting export')
+
+    const body = JSON.stringify({ markdown: value })
+    const headers = { 'Content-Type': 'application/json' }
+    const res = await fetch('/api/generate-pdf', {
+      method: 'POST',
+      body,
+      headers,
+    })
+
+    const pdfBlob = await res.blob()
+    const pdfBlobUrl = window.URL.createObjectURL(pdfBlob)
+    const pdfFilename = meta?.title ? `${meta.title}.pdf` : 'my-adventure.pdf'
+
+    const a = document.createElement('a')
+    a.href = pdfBlobUrl
+    a.download = pdfFilename
+    a.click()
+  }
+
   useEffect(() => {
     setDisableScroll(
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -135,6 +156,7 @@ export default function Home() {
           onReset={handleReset}
           onMetaSubmit={handleMetaSubmit}
           meta={meta}
+          onExport={handleExport}
         />
       </Flex>
 
