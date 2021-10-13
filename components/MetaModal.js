@@ -150,7 +150,7 @@ export default function MetaModal({
             Cancel
           </Button>
           <Button type="submit" form="edit-meta-form">
-            Update the meta
+            Edit first page
           </Button>
         </ModalFooter>
       </ModalContent>
