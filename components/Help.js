@@ -74,6 +74,7 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                   </Text>
                   <Code
                     colorScheme="grey"
+                    padding={2}
                     marginTop={2}
                     display="block"
                     whiteSpace="pre"
@@ -93,6 +94,7 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                   </Text>
                   <Code
                     colorScheme="grey"
+                    padding={2}
                     marginTop={2}
                     display="block"
                     whiteSpace="pre"
