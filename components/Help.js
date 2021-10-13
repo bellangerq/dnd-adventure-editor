@@ -11,11 +11,16 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 
-export default function Help({ isOpen, onClose }) {
+export default function Help({ isOpen, onClose, finalFocusRef }) {
   const modalSize = useBreakpointValue({ base: 'full', sm: 'xl' })
 
   return (
-    <Modal size={modalSize} isOpen={isOpen} onClose={onClose}>
+    <Modal
+      finalFocusRef={finalFocusRef}
+      size={modalSize}
+      isOpen={isOpen}
+      onClose={onClose}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>How to write</ModalHeader>

@@ -32,6 +32,7 @@ export default function MetaModal({
   onClose,
   onConfirm,
   defaultValues,
+  finalFocusRef,
 }) {
   const modalSize = useBreakpointValue({ base: 'full', sm: 'md' })
 
@@ -60,7 +61,12 @@ export default function MetaModal({
   }
 
   return (
-    <Modal size={modalSize} isOpen={isOpen} onClose={onClose}>
+    <Modal
+      finalFocusRef={finalFocusRef}
+      size={modalSize}
+      isOpen={isOpen}
+      onClose={onClose}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Edit meta</ModalHeader>

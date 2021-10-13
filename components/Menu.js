@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import {
   Button,
   useBoolean,
@@ -33,6 +34,8 @@ export default function Menu({
   const [showConfirm, { off: closeConfirm, on: openConfirm }] = useBoolean()
   const [showHelp, { off: closeHelp, on: openHelp }] = useBoolean()
 
+  const finalRef = useRef()
+
   const {
     isOpen: showMeta,
     onOpen: openMeta,
@@ -56,15 +59,17 @@ export default function Menu({
 
   return (
     <>
-      <Help isOpen={showHelp} onClose={closeHelp} />
+      <Help finalFocusRef={finalRef} isOpen={showHelp} onClose={closeHelp} />
 
       <Confirm
+        finalFocusRef={finalRef}
         isOpen={showConfirm}
         onClose={closeConfirm}
         onConfirm={handleConfirm}
       />
 
       <MetaModal
+        finalFocusRef={finalRef}
         isOpen={showMeta}
         onClose={closeMeta}
         onConfirm={handleMeta}
@@ -72,7 +77,9 @@ export default function Menu({
       />
 
       <ChakraMenu>
-        <MenuButton as={Button}>Menu</MenuButton>
+        <MenuButton ref={finalRef} as={Button}>
+          Menu
+        </MenuButton>
         <MenuList>
           <MenuItem onClick={openMeta} icon={<EditIcon />}>
             Edit first page
