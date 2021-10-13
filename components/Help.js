@@ -44,9 +44,10 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
               </Heading>
               <Text>
                 Start by giving your new adventure details like a title and a
-                description. Select "<strong>Edit first page</strong>" in the
-                main menu and fill the form in. It will make your adventure
-                looks cooler!
+                description. Select &ldquo;
+                <strong>Edit first page</strong>
+                &rdquo; in the main menu and fill the form in. It will make your
+                adventure looks cooler!
               </Text>
             </ListItem>
             <ListItem>
@@ -69,17 +70,20 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                   <Text>
                     <strong>Callout</strong>: renders a callout to emphasize a
                     part in your adventure. Useful for incoming encounters,
-                    specific location's description or secret DM information.
+                    specific descriptions of locations or secret DM information.
                   </Text>
                   <Code
                     colorScheme="grey"
                     marginTop={2}
                     display="block"
                     whiteSpace="pre"
-                    children={`:::
-                      pouet
-                    :::`}
-                  />
+                  >
+                    :::
+                    <br />
+                    pouet
+                    <br />
+                    :::
+                  </Code>
                 </ListItem>
                 <ListItem>
                   <Text>
@@ -92,15 +96,16 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                     marginTop={2}
                     display="block"
                     whiteSpace="pre"
-                    children={`Table: Race of character
-
-                    | d4 | Race     |
-                    | -- | -------- |
-                    | 1  | Dwarf    |
-                    | 2  | Elf      |
-                    | 3  | Halfling |
-                    | 4  | Human    |`}
-                  />
+                  >
+                    Table: Race of character
+                    <br />
+                    <br />
+                    | d4 | Race |<br />
+                    | -- | -------- |<br />
+                    | 1 | Dwarf |<br />
+                    | 2 | Elf |<br />
+                    | 3 | Halfling |<br />| 4 | Human |
+                  </Code>
                 </ListItem>
               </UnorderedList>
             </ListItem>
@@ -109,8 +114,8 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                 Download as PDF
               </Heading>
               <Text>
-                Select "<strong>Download</strong>" in the main menu to download
-                the printable PDF.
+                Select &ldquo;<strong>Download</strong>&rdquo; in the main menu
+                to download the printable PDF.
               </Text>
             </ListItem>
           </List>
