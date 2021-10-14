@@ -1,6 +1,6 @@
 @media print {
   :root {
-    font-size: 12pt !important;
+    font-size: 8pt !important;
   }
 
   *:not(.do-print-ancestor, .do-print, .do-print *) {

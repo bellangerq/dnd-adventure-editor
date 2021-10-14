@@ -6,6 +6,9 @@ const theme = extendTheme(
       initialColorMode: 'dark',
       useSystemColorMode: true,
     },
+    fonts: {
+      print: '"Libre Baskerville", serif',
+    },
   },
   withDefaultColorScheme({ colorScheme: 'pink' })
 )
