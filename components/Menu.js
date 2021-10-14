@@ -85,7 +85,7 @@ export default function Menu({
             Edit first page
           </MenuItem>
           <MenuItem onClick={openHelp} icon={<QuestionIcon />}>
-            How to
+            Help
           </MenuItem>
           <MenuItem onClick={openConfirm} icon={<DeleteIcon />}>
             Reset

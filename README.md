@@ -19,6 +19,7 @@ yarn dev
 - [x] Load default / reset
 - [x] Responsive Menu styles
 - [x] Fix frontmatter editing
-- [ ] Wording
+- [x] Wording
 - [ ] Print styles
+- [ ] Meta + icon
 - [ ] Paste images

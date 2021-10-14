@@ -7,6 +7,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Heading,
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
@@ -23,12 +24,17 @@ export default function Confirm({ isOpen, onClose, onConfirm, finalFocusRef }) {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Reset default content</ModalHeader>
+        <ModalHeader>
+          <Heading as="h2" fontSize="2xl">
+            Reset default content
+          </Heading>
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Text>
-            Reseting default content will erase your adventure. Are you sure you
-            want to proceed?
+            Reseting default content will{' '}
+            <strong>erase your current adventure</strong>. Are you sure you want
+            to proceed?
           </Text>
         </ModalBody>
 
