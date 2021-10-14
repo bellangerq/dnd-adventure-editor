@@ -1,3 +1,4 @@
+/* LINKS */
 .content a {
   color: var(--chakra-colors-pink-400);
   text-decoration: underline;
@@ -122,6 +123,12 @@
     --size-heading-callout: var(--chakra-fontSizes-xl);
   }
 
+  .content {
+    column-count: 2;
+    column-gap: 20pt;
+    column-fill: auto;
+  }
+
   .content,
   .content * {
     font-family: var(--chakra-fonts-print);
@@ -148,6 +155,10 @@
 
   .content h4 {
     font-size: var(--size-heading-4);
+  }
+
+  .content a {
+    color: var(--color-heading);
   }
 
   .content strong {
