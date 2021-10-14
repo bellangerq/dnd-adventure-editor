@@ -61,6 +61,7 @@ export default function Meta({
             width: '60%',
           },
         }}
+        aria-hidden="true"
       >
         <polygon
           points="50,0 100,50 50,100 0,50"

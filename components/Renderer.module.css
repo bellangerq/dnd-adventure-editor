@@ -58,14 +58,14 @@
 }
 
 /* CALLOUTS */
-.content .callout {
+.content .callout > .callout-container {
   border-radius: var(--chakra-radii-md);
   margin: var(--chakra-space-2) 0;
   padding: var(--chakra-space-2) var(--chakra-space-4);
   position: relative;
 }
 
-.content .callout::after {
+.content .callout > .callout-container::after {
   background-color: var(--chakra-colors-pink-400);
   border-radius: var(--chakra-radii-md);
   content: '';
@@ -114,10 +114,12 @@
     --color-heading: #662927;
     --color-heading-stroke: #a7a9ac;
     --color-heading-border: #c4ab74;
+    --color-callout-border: #38130a;
 
     --size-heading-2: var(--chakra-fontSizes-5xl);
     --size-heading-3: var(--chakra-fontSizes-4xl);
     --size-heading-4: var(--chakra-fontSizes-2xl);
+    --size-heading-callout: var(--chakra-fontSizes-xl);
   }
 
   .content,
@@ -150,5 +152,62 @@
 
   .content strong {
     color: var(--color-heading);
+  }
+
+  .content .callout {
+    --callout-paperfold-height: 10px;
+    --callout-paperfold-width: 15px;
+
+    position: relative;
+    margin: var(--callout-paperfold-height) 0;
+  }
+
+  .content .callout .callout-container {
+    background-color: white;
+    border-radius: 0;
+    border-top: 2px solid var(--color-callout-border);
+    border-bottom: 2px solid var(--color-callout-border);
+    z-index: 1;
+    margin: 0;
+  }
+
+  .content .callout::before,
+  .content .callout::after {
+    content: '';
+    border-bottom: var(--callout-paperfold-height) solid transparent;
+    border-top: var(--callout-paperfold-height) solid transparent;
+    position: absolute;
+    top: calc(var(--callout-paperfold-height) * -1);
+    bottom: calc(var(--callout-paperfold-height) * -1);
+    z-index: -1;
+  }
+
+  .content .callout::before {
+    left: 0;
+    border-right: var(--callout-paperfold-width) solid
+      var(--color-callout-border);
+  }
+
+  .content .callout::after {
+    right: 0;
+    border-left: var(--callout-paperfold-width) solid
+      var(--color-callout-border);
+  }
+
+  .content .callout .callout-container h2,
+  .content .callout .callout-container h3,
+  .content .callout .callout-container h4 {
+    border-bottom: none;
+    color: black;
+    font-size: var(--size-heading-callout);
+  }
+
+  .content .callout .callout-container::after {
+    background-color: var(--color-heading);
+    border-radius: 0;
+  }
+
+  .content tbody tr:nth-child(odd) td::after {
+    background-color: var(--color-heading);
   }
 }

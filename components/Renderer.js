@@ -23,9 +23,9 @@ export default function Renderer({ value, scrollRef, onScroll, hidden, meta }) {
       },
       render: function (tokens, idx) {
         if (tokens[idx].nesting === 1) {
-          return `<div class="${classes.callout}">`
+          return `<div class="${classes.callout}"><div class="${classes['callout-container']}">`
         } else {
-          return '</div>'
+          return '</div></div>'
         }
       },
     })
