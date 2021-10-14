@@ -71,6 +71,7 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                     <strong>Callout</strong>: renders a callout to emphasize a
                     part in your adventure. Useful for incoming encounters,
                     specific descriptions of locations or secret DM information.
+                    You can even write Markdown inside the callout.
                   </Text>
                   <Code
                     colorScheme="grey"
@@ -78,10 +79,12 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                     marginTop={2}
                     display="block"
                     whiteSpace="pre"
+                    overflow="auto"
                   >
                     :::
                     <br />
-                    pouet
+                    Characters with a **Passive Perception &gt;= 15** can feel
+                    the presence of the Night hag.
                     <br />
                     :::
                   </Code>
@@ -98,6 +101,7 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                     marginTop={2}
                     display="block"
                     whiteSpace="pre"
+                    overflow="auto"
                   >
                     Table: Race of character
                     <br />
