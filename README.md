@@ -20,6 +20,14 @@ yarn dev
 - [x] Responsive Menu styles
 - [x] Fix frontmatter editing
 - [x] Wording
-- [ ] Print styles
+- [x] Print styles
+- [ ] Print help wording (background images, meta data)
+- [ ] Print layout
+- [ ] Fix dark mode in print
+- [ ] Header description
 - [ ] Meta + icon
 - [ ] Paste images
+- [ ] Different types of callout
+- [ ] Stats blocks
+- [ ] Syntax highlighter for the editor
+- [ ] Review the scroll system
