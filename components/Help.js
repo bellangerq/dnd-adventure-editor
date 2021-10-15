@@ -59,7 +59,6 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                 <Link
                   href="https://www.markdownguide.org/cheat-sheet/"
                   isExternal
-                  color="pink"
                 >
                   Markdown guidelines <ExternalLinkIcon />
                 </Link>{' '}
@@ -74,7 +73,7 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                     You can even write Markdown inside the callout.
                   </Text>
                   <Code
-                    colorScheme="grey"
+                    colorScheme="gray"
                     padding={2}
                     marginTop={2}
                     display="block"
@@ -96,7 +95,7 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                     adventure.
                   </Text>
                   <Code
-                    colorScheme="grey"
+                    colorScheme="gray"
                     padding={2}
                     marginTop={2}
                     display="block"

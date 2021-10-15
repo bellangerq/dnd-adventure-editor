@@ -1,5 +1,7 @@
 import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
 
+const primaryColor = 'pink'
+
 const theme = extendTheme(
   {
     config: {
@@ -9,8 +11,19 @@ const theme = extendTheme(
     fonts: {
       print: '"Libre Baskerville", serif',
     },
+    components: {
+      Link: {
+        baseStyle: ({ colorMode }) => ({
+          color:
+            colorMode === 'dark'
+              ? `${primaryColor}.300`
+              : `${primaryColor}.600`,
+          textDecoration: 'underline',
+        }),
+      },
+    },
   },
-  withDefaultColorScheme({ colorScheme: 'pink' })
+  withDefaultColorScheme({ colorScheme: primaryColor })
 )
 
 export default theme

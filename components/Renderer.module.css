@@ -1,6 +1,6 @@
 /* LINKS */
 .content a {
-  color: var(--chakra-colors-pink-400);
+  color: var(--chakra-colors-pink-600);
   text-decoration: underline;
 }
 
