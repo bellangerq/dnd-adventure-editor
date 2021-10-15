@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Heading, Grid, Box, Container, Flex } from '@chakra-ui/react'
+import { Heading, Grid, Box, Text, Container, Flex } from '@chakra-ui/react'
 import Menu from '../components/Menu'
 import Editor from '../components/Editor'
 import Renderer from '../components/Renderer'
@@ -116,16 +116,21 @@ export default function Home() {
       height="100vh"
       padding={{ base: 2, sm: 4 }}
     >
-      <Flex
+      <Grid
         as="header"
-        marginTop={{ base: 0, sm: 4 }}
-        marginBottom={4}
+        templateColumns={{ base: '1fr auto', sm: 'auto 1fr auto' }}
+        templateRows={{ base: 'auto auto', sm: 'auto' }}
+        gap={{ base: 2, sm: 4 }}
         alignItems="center"
-        justifyContent="space-between"
-        flexWrap="wrap"
-        sx={{ gap: 12 }}
+        marginBottom={4}
       >
         <Heading as="h1">D&D AE</Heading>
+        <Text
+          gridRow={{ base: '2', sm: '1' }}
+          gridColumn={{ base: '1 / span 2', sm: '2' }}
+        >
+          Generate a beautiful and print-ready D&D adventure.
+        </Text>
 
         <Menu
           disableScroll={disableScroll}
@@ -136,7 +141,7 @@ export default function Home() {
           onMetaSubmit={handleMetaSubmit}
           meta={meta}
         />
-      </Flex>
+      </Grid>
 
       <Grid
         as="main"

@@ -24,10 +24,11 @@ yarn dev
 - [ ] Print help wording (background images, meta data)
 - [ ] Print layout
 - [x] Fix dark mode in print
-- [ ] Header description
+- [x] Header description
 - [ ] Meta + icon
 - [ ] Paste images
 - [ ] Different types of callout
 - [ ] Stats blocks
 - [ ] Syntax highlighter for the editor
 - [ ] Review the scroll system
+- [ ] Mobile layout (tabs ?)

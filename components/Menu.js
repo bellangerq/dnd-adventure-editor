@@ -77,7 +77,7 @@ export default function Menu({
       />
 
       <ChakraMenu>
-        <MenuButton ref={finalRef} as={Button}>
+        <MenuButton flexShrink={0} ref={finalRef} as={Button}>
           Menu
         </MenuButton>
         <MenuList>
