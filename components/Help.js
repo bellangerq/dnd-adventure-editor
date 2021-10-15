@@ -9,7 +9,8 @@ import {
   Button,
   Heading,
   Text,
-  List,
+  Stack,
+  OrderedList,
   UnorderedList,
   ListItem,
   Link,
@@ -37,8 +38,8 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <List as="ol" spacing={8}>
-            <ListItem>
+          <Stack spacing={8}>
+            <section>
               <Heading as="h3" fontSize="xl" marginBottom={2}>
                 Adventure details
               </Heading>
@@ -47,10 +48,11 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                 description. Select &ldquo;
                 <strong>Edit first page</strong>
                 &rdquo; in the main menu and fill the form in. It will make your
-                adventure looks cooler!
+                adventure looks cooler! Also prefer uploading an image in
+                landscape format (16/9).
               </Text>
-            </ListItem>
-            <ListItem>
+            </section>
+            <section>
               <Heading as="h3" fontSize="xl" marginBottom={2}>
                 Writing main content
               </Heading>
@@ -113,17 +115,42 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
                   </Code>
                 </ListItem>
               </UnorderedList>
-            </ListItem>
-            <ListItem>
+            </section>
+            <section>
               <Heading as="h3" fontSize="xl" marginBottom={2}>
-                Download as PDF
+                Export as PDF
               </Heading>
               <Text>
-                Select &ldquo;<strong>Download</strong>&rdquo; in the main menu
-                to download the printable PDF.
+                To get a better render of your printed adventure, it is
+                recommended to use{' '}
+                <Link href="https://www.mozilla.org" isExternal>
+                  Mozilla Firefox <ExternalLinkIcon />
+                </Link>{' '}
+                or{' '}
+                <Link href="https://www.google.com/chrome/" isExternal>
+                  Google Chrome <ExternalLinkIcon />
+                </Link>
+                . Then follow these steps:
               </Text>
-            </ListItem>
-          </List>
+
+              <OrderedList marginTop={2}>
+                <ListItem>
+                  Select &ldquo;<strong>Export</strong>&rdquo; in the main menu.
+                </ListItem>
+                <ListItem>
+                  Select &ldquo;<strong>Save to PDF</strong>&rdquo; as the print
+                  destination.
+                </ListItem>
+                <ListItem>
+                  Uncheck &ldquo;<strong>Print headers and footers</strong>
+                  &rdquo; (optional).
+                </ListItem>
+                <ListItem>
+                  Check &ldquo;<strong>Print backgrounds</strong>&rdquo;.
+                </ListItem>
+              </OrderedList>
+            </section>
+          </Stack>
         </ModalBody>
 
         <ModalFooter>

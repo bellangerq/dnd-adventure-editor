@@ -21,7 +21,7 @@ yarn dev
 - [x] Fix frontmatter editing
 - [x] Wording
 - [x] Print styles
-- [ ] Print help wording (background images, meta data)
+- [x] Print help wording (background images, meta data)
 - [x] Print layout
 - [x] Fix dark mode in print
 - [x] Header description
