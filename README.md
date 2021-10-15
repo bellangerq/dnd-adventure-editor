@@ -23,7 +23,7 @@ yarn dev
 - [x] Print styles
 - [ ] Print help wording (background images, meta data)
 - [ ] Print layout
-- [ ] Fix dark mode in print
+- [x] Fix dark mode in print
 - [ ] Header description
 - [ ] Meta + icon
 - [ ] Paste images

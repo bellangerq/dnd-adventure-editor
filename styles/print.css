@@ -3,6 +3,11 @@
     font-size: 8pt !important;
   }
 
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
   *:not(.do-print-ancestor, .do-print, .do-print *) {
     display: none !important;
   }
