@@ -129,6 +129,24 @@
     column-fill: auto;
   }
 
+  .content h2,
+  .content h3,
+  .content h4 {
+    page-break-after: avoid;
+    break-after: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .content a,
+  .content blockquote,
+  .content img,
+  .content table,
+  .content .callout {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
   .content,
   .content * {
     font-family: var(--chakra-fonts-print);
@@ -157,7 +175,8 @@
     font-size: var(--size-heading-4);
   }
 
-  .content a {
+  .content a,
+  .content.dark a {
     color: var(--color-heading);
   }
 

@@ -3,6 +3,11 @@
     font-size: 8pt !important;
   }
 
+  @page {
+    orphans: 3;
+    widows: 3;
+  }
+
   body {
     background: white !important;
     color: black !important;
