@@ -30,5 +30,5 @@ yarn dev
 - [ ] Different types of callout
 - [ ] Stats blocks
 - [ ] Syntax highlighter for the editor
-- [ ] Review the scroll system
+- [x] Review the scroll system
 - [ ] Mobile layout (tabs ?)
