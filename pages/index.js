@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { Heading, Grid, Box, Text, Container, Flex } from '@chakra-ui/react'
 import Menu from '../components/Menu'
 import Editor from '../components/Editor'
 import Renderer from '../components/Renderer'
 import defaultValue from '../utils/default-editor-value'
+import { useSyncScroller } from '../utils/useScrollSync'
 
 const STORAGE_KEY = 'dnd-adventure-editor'
 
@@ -11,68 +12,30 @@ export default function Home() {
   const [value, setValue] = useState(defaultValue)
   const [disableScroll, setDisableScroll] = useState(false)
   const [enableFocusMode, setEnableFocusMode] = useState(false)
-  const [ignoreScroll, setIgnoreScroll] = useState(false)
+  const ref1 = useSyncScroller('synchronizedEditor')
+  const ref2 = useSyncScroller('synchronizedEditor')
   const [meta, setMeta] = useState(null)
-  const editorRef = useRef()
-  const rendererRef = useRef()
 
-  const handleChange = value => {
+  const handleChange = useCallback(value => {
     setValue(value)
-  }
+  }, [])
 
-  const handleDisableScroll = () => {
+  const handleDisableScroll = useCallback(() => {
     setDisableScroll(!disableScroll)
-  }
+  }, [disableScroll])
 
-  const handleToggleFocusMode = () => {
+  const handleToggleFocusMode = useCallback(() => {
     setEnableFocusMode(!enableFocusMode)
-  }
+  }, [enableFocusMode])
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setValue(defaultValue)
     setMeta(null)
-  }
+  }, [])
 
-  // TODO: extract synchronized scrolling into a hook
-  const handleTextareaScroll = event => {
-    if (ignoreScroll) {
-      setIgnoreScroll(false)
-      return
-    }
-
-    const { scrollTop, scrollHeight, clientHeight } = event.target
-    const scrollTopMax = scrollHeight - clientHeight
-    const ratio = scrollTop / scrollTopMax
-
-    const rendererScrollTopMax =
-      rendererRef.current.scrollHeight - rendererRef.current.clientHeight
-    const rendererTop = Math.round(rendererScrollTopMax * ratio)
-
-    setIgnoreScroll(true)
-    rendererRef.current.scrollTop = rendererTop
-  }
-
-  const handleRendererScroll = event => {
-    if (ignoreScroll) {
-      setIgnoreScroll(false)
-      return
-    }
-
-    const { scrollTop, scrollHeight, clientHeight } = event.target
-    const scrollTopMax = scrollHeight - clientHeight
-    const ratio = scrollTop / scrollTopMax
-
-    const editorScrollTopMax =
-      editorRef.current.scrollHeight - editorRef.current.clientHeight
-    const editorTop = Math.round(editorScrollTopMax * ratio)
-
-    setIgnoreScroll(true)
-    editorRef.current.scrollTop = editorTop
-  }
-
-  const handleMetaSubmit = data => {
+  const handleMetaSubmit = useCallback(data => {
     setMeta(data)
-  }
+  }, [])
 
   useEffect(() => {
     setDisableScroll(
@@ -163,19 +126,11 @@ export default function Home() {
           },
         }}
       >
-        <Editor
-          value={value}
-          onChange={handleChange}
-          scrollRef={editorRef}
-          onScroll={
-            disableScroll || enableFocusMode ? null : handleTextareaScroll
-          }
-        />
+        <Editor value={value} onChange={handleChange} scrollRef={ref1} />
         <Renderer
           value={value}
           meta={meta}
-          scrollRef={rendererRef}
-          onScroll={disableScroll ? null : handleRendererScroll}
+          scrollRef={ref2}
           hidden={enableFocusMode}
         />
       </Grid>

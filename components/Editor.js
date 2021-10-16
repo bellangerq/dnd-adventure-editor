@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import {
   Textarea,
   FormControl,
@@ -5,10 +6,13 @@ import {
   VisuallyHidden,
 } from '@chakra-ui/react'
 
-export default function Editor({ onChange, value, scrollRef, onScroll }) {
-  const handleChange = e => {
-    onChange(e.target.value)
-  }
+export default function Editor({ onChange, value, scrollRef }) {
+  const handleChange = useCallback(
+    e => {
+      onChange(e.target.value)
+    },
+    [onChange]
+  )
 
   return (
     <FormControl id="editor">
@@ -22,7 +26,6 @@ export default function Editor({ onChange, value, scrollRef, onScroll }) {
         value={value}
         onChange={handleChange}
         fontFamily="mono"
-        onScroll={onScroll}
         resize="none"
       />
     </FormControl>
