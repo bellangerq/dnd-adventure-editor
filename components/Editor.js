@@ -7,7 +7,25 @@ import {
 } from '@chakra-ui/react'
 
 async function uploadImageFile(file) {
-  return 'https://picsum.photos/200/300'
+  const formData = new FormData()
+  formData.append('image', file, file.name)
+
+  const res = await fetch('/api/upload-image', {
+    method: 'POST',
+    headers: {
+      Authorization: 'Client-ID 692dd137fb5fb7a',
+      Referer: null,
+    },
+    body: formData,
+  })
+
+  const json = await res.json()
+
+  if (json.success) {
+    return json.data.link
+  } else {
+    throw new Error(json.data.error)
+  }
 }
 
 export default function Editor({ onChange, value, scrollRef, onScroll }) {
@@ -64,7 +82,7 @@ export default function Editor({ onChange, value, scrollRef, onScroll }) {
   return (
     <FormControl id="editor">
       <VisuallyHidden>
-        <FormLabel>Adventure's content</FormLabel>
+        <FormLabel>Adventure&apos;s content</FormLabel>
       </VisuallyHidden>
       <Textarea
         ref={scrollRef}
