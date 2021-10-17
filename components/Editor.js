@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import {
   Textarea,
   FormControl,
   FormLabel,
   VisuallyHidden,
+  useToast,
 } from '@chakra-ui/react'
 
 async function uploadImageFile(file) {
@@ -30,54 +31,62 @@ async function uploadImageFile(file) {
 
 export default function Editor({ onChange, value, scrollRef, onScroll }) {
   const [isUploading, setIsUploading] = useState(false)
+  const toast = useToast()
 
   const handleChange = e => {
     onChange(e.target.value)
   }
 
-  /**
-   * @param {ClipboardEvent} e
-   */
-  const handlePaste = async e => {
-    const data = e.clipboardData.items[0]
-    const textarea = e.currentTarget
+  /** @param {ClipboardEvent} e */
+  const handlePaste = useCallback(
+    async e => {
+      const data = e.clipboardData.items[0]
+      const textarea = e.currentTarget
 
-    if (data.kind === 'file' && data.type.startsWith('image/')) {
-      const file = data.getAsFile()
+      if (data.kind === 'file' && data.type.startsWith('image/')) {
+        const file = data.getAsFile()
 
-      // Disable text area temporarily
-      setIsUploading(true)
+        // Disable text area temporarily
+        setIsUploading(true)
 
-      try {
-        // Upload image
-        const imageUrl = await uploadImageFile(file)
+        try {
+          // Upload image
+          const imageUrl = await uploadImageFile(file)
 
-        // generate markdown from image url
-        const pastedText = `![image](${imageUrl})`
+          // generate markdown from image url
+          const pastedText = `![image](${imageUrl})`
 
-        const { selectionStart, selectionEnd } = textarea
+          const { selectionStart, selectionEnd } = textarea
 
-        // Insert image markdown at current cursor position
-        const newValue =
-          textarea.value.substring(0, selectionStart) +
-          pastedText +
-          textarea.value.substring(selectionEnd, textarea.value.length)
+          // Insert image markdown at current cursor position
+          const newValue =
+            textarea.value.substring(0, selectionStart) +
+            pastedText +
+            textarea.value.substring(selectionEnd, textarea.value.length)
 
-        // tell parent the value was updated
-        onChange(newValue)
+          // tell parent the value was updated
+          onChange(newValue)
 
-        // update cursor position to the end of the added markdown
-        textarea.selectionStart = selectionStart + pastedText.length
-        textarea.selectionEnd = selectionStart + pastedText.length
-      } catch (e) {
-        // TODO: show snackbar ?
-        console.log('Failed to upload image.', e)
-      } finally {
-        // re-enable the text-area
-        setIsUploading(false)
+          // update cursor position to the end of the added markdown
+          textarea.selectionStart = selectionStart + pastedText.length
+          textarea.selectionEnd = selectionStart + pastedText.length
+        } catch (e) {
+          console.error('Failed to upload image.', e)
+          toast({
+            title: 'Something went wrong...',
+            description:
+              'An error happened while uploading the image. Please try again.',
+            status: 'error',
+            isClosable: true,
+          })
+        } finally {
+          // re-enable the text-area
+          setIsUploading(false)
+        }
       }
-    }
-  }
+    },
+    [onChange, toast]
+  )
 
   return (
     <FormControl id="editor">
