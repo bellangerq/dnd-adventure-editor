@@ -53,7 +53,7 @@ export default function Editor({ onChange, value, scrollRef, onScroll }) {
           const imageUrl = await uploadImageFile(file)
 
           // generate markdown from image url
-          const pastedText = `![image](${imageUrl})`
+          const pastedText = `![](${imageUrl})`
 
           const { selectionStart, selectionEnd } = textarea
 
