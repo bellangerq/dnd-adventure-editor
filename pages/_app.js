@@ -5,16 +5,21 @@ import '../styles/print.css'
 import customTheme from '../utils/theme'
 
 function App({ Component, pageProps }) {
+  const title = 'D&D Adventure Editor'
+  const description = 'Generate beautiful and print-ready D&D adventures.'
+  const ogImage = `${
+    process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
+  }/og.jpg`
+
   return (
     <>
       <Head>
-        <title>D&D Adventure Editor</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="og:title" content={title} />
+        <meta name="description" content={description} />
+        <meta name="og:description" content={description} />
+        <meta name="og:image" content={ogImage} />
       </Head>
 
       <ChakraProvider theme={customTheme}>

@@ -33,3 +33,4 @@ yarn dev
 - [ ] Syntax highlighter for the editor
 - [x] Review the scroll system
 - [ ] Mobile layout (tabs ?)
+- [ ] Color theme for printed content
