@@ -10,6 +10,7 @@ export default createProxyMiddleware({
     // error code 403 (forbidden) if we keep this header ¯\_(ツ)_/¯
     // This was extremely annoying to find out
     Referer: null,
+    Authorization: `Client-ID ${process.env.IMGUR_CLIENT_ID}`,
   },
 })
 
