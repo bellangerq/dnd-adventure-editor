@@ -1,6 +1,6 @@
 import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
 
-const primaryColor = 'pink'
+const primaryColor = 'purple'
 
 const theme = extendTheme(
   {

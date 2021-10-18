@@ -1,11 +1,11 @@
 /* LINKS */
 .content a {
-  color: var(--chakra-colors-pink-600);
+  color: var(--chakra-colors-purple-600);
   text-decoration: underline;
 }
 
 .content.dark a {
-  color: var(--chakra-colors-pink-300);
+  color: var(--chakra-colors-purple-300);
 }
 
 /* HEADINGS */
@@ -67,7 +67,7 @@
 }
 
 .content .callout > .callout-container::after {
-  background-color: var(--chakra-colors-pink-400);
+  background-color: var(--chakra-colors-purple-400);
   border-radius: var(--chakra-radii-md);
   content: '';
   opacity: 0.1;
@@ -99,7 +99,7 @@
 }
 
 .content tbody tr:nth-child(odd) td::after {
-  background-color: var(--chakra-colors-pink-400);
+  background-color: var(--chakra-colors-purple-400);
   content: '';
   opacity: 0.1;
   position: absolute;

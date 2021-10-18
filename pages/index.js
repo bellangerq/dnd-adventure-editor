@@ -85,16 +85,16 @@ export default function Home() {
     >
       <Grid
         as="header"
-        templateColumns={{ base: '1fr auto', sm: 'auto 1fr auto' }}
-        templateRows={{ base: 'auto auto', sm: 'auto' }}
-        gap={{ base: 2, sm: 4 }}
-        alignItems="center"
+        templateColumns={{ base: '1fr auto', md: 'auto 1fr auto' }}
+        templateRows={{ base: 'auto auto', md: 'auto' }}
+        gap={{ base: 2, md: 4 }}
+        alignItems={{ base: 'start', md: 'center' }}
         marginBottom={4}
       >
-        <Heading as="h1">D&D AE</Heading>
+        <Heading as="h1">D&D Adventure Editor</Heading>
         <Text
-          gridRow={{ base: '2', sm: '1' }}
-          gridColumn={{ base: '1 / span 2', sm: '2' }}
+          gridRow={{ base: '2', md: '1' }}
+          gridColumn={{ base: '1 / span 2', md: '2' }}
         >
           Generate beautiful and print-ready D&D adventures.
         </Text>
