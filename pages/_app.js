@@ -7,9 +7,9 @@ import customTheme from '../utils/theme'
 function App({ Component, pageProps }) {
   const title = 'D&D Adventure Editor'
   const description = 'Generate beautiful and print-ready D&D adventures.'
-  const ogImage = `${
-    process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
-  }/og.jpg`
+  const ogImage = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/og.jpg`
+    : 'http://localhost:3000/og.jpg'
 
   return (
     <>
