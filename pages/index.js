@@ -6,7 +6,7 @@ import Renderer from '../components/Renderer'
 import defaultValue from '../utils/default-editor-value'
 import { useSyncScroller } from '../utils/useScrollSync'
 
-const STORAGE_KEY = 'dnd-adventure-editor'
+export const STORAGE_KEY = 'dnd-adventure-editor'
 
 export default function Home() {
   const [value, setValue] = useState(defaultValue)
@@ -15,8 +15,10 @@ export default function Home() {
   const ref1 = useSyncScroller('synchronizedEditor')
   const ref2 = useSyncScroller('synchronizedEditor')
   const [meta, setMeta] = useState(null)
+  const [isPristine, setIsPristine] = useState(true)
 
   const handleChange = useCallback(value => {
+    setIsPristine(false)
     setValue(value)
   }, [])
 
@@ -50,8 +52,10 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    if (isPristine) return
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ markdown: value, meta }))
-  }, [value, meta])
+  }, [value, meta, isPristine])
 
   useEffect(() => {
     const doPrintEl = document.querySelector('.do-print')

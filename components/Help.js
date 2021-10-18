@@ -19,7 +19,12 @@ import {
 } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 
-export default function Help({ isOpen, onClose, finalFocusRef }) {
+export default function Help({
+  isOpen,
+  onClose,
+  finalFocusRef,
+  hasLocalAdventure,
+}) {
   const modalSize = useBreakpointValue({ base: 'full', sm: 'xl' })
 
   return (
@@ -33,7 +38,7 @@ export default function Help({ isOpen, onClose, finalFocusRef }) {
       <ModalContent>
         <ModalHeader>
           <Heading as="h2" fontSize="2xl">
-            Help
+            {hasLocalAdventure ? 'Help' : 'Welcome'}
           </Heading>
         </ModalHeader>
         <ModalCloseButton />

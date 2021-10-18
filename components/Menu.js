@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import {
   Button,
   useBoolean,
@@ -21,6 +21,7 @@ import {
 import Confirm from './Confirm'
 import Help from './Help'
 import MetaModal from './MetaModal'
+import { STORAGE_KEY } from '../pages/index'
 
 export default function Menu({
   disableScroll,
@@ -33,6 +34,7 @@ export default function Menu({
 }) {
   const [showConfirm, { off: closeConfirm, on: openConfirm }] = useBoolean()
   const [showHelp, { off: closeHelp, on: openHelp }] = useBoolean()
+  const [hasLocalAdventure, setHasLocalAdventure] = useState(false)
 
   const finalRef = useRef()
 
@@ -42,15 +44,31 @@ export default function Menu({
     onClose: closeMeta,
   } = useDisclosure()
 
-  const handleConfirm = () => {
+  const handleConfirm = useCallback(() => {
     closeConfirm()
     onReset()
-  }
+  }, [closeConfirm, onReset])
 
-  const handleMeta = data => {
-    closeMeta()
-    onMetaSubmit(data)
-  }
+  const handleMeta = useCallback(
+    data => {
+      closeMeta()
+      onMetaSubmit(data)
+    },
+    [closeMeta, onMetaSubmit]
+  )
+
+  useEffect(() => {
+    const hasLocalAdventure = !!localStorage.getItem(STORAGE_KEY)
+    setHasLocalAdventure(hasLocalAdventure)
+    if (!hasLocalAdventure) {
+      openHelp()
+    }
+  }, [openHelp])
+
+  const handleHelpClose = useCallback(() => {
+    setHasLocalAdventure(true)
+    closeHelp()
+  }, [closeHelp])
 
   const menuOptionGroupValue = [
     ...(!disableScroll ? ['enableScroll'] : []),
@@ -59,7 +77,12 @@ export default function Menu({
 
   return (
     <>
-      <Help finalFocusRef={finalRef} isOpen={showHelp} onClose={closeHelp} />
+      <Help
+        finalFocusRef={finalRef}
+        isOpen={showHelp}
+        onClose={handleHelpClose}
+        hasLocalAdventure={hasLocalAdventure}
+      />
 
       <Confirm
         finalFocusRef={finalRef}
