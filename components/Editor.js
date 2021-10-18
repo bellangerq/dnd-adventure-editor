@@ -14,7 +14,6 @@ async function uploadImageFile(file) {
   const res = await fetch('/api/upload-image', {
     method: 'POST',
     headers: {
-      Authorization: 'Client-ID 692dd137fb5fb7a',
       Referer: null,
     },
     body: formData,
