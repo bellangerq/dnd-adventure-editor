@@ -25,6 +25,7 @@ yarn dev
 - [x] Print layout
 - [x] Fix dark mode in print
 - [x] Header description
+- [ ] Paste image files
 - [ ] Meta + icon
 - [x] Paste images
 - [ ] Different types of callout
