@@ -24,6 +24,7 @@ function App({ Component, pageProps }) {
           content={description}
         />
         <meta name="og:image" property="og:image" content={ogImage} />
+        <meta name="twitter:card" content="summary" />
       </Head>
 
       <ChakraProvider theme={customTheme}>
