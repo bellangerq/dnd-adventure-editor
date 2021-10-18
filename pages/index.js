@@ -96,7 +96,7 @@ export default function Home() {
           gridRow={{ base: '2', sm: '1' }}
           gridColumn={{ base: '1 / span 2', sm: '2' }}
         >
-          Generate a beautiful and print-ready D&D adventure.
+          Generate beautiful and print-ready D&D adventures.
         </Text>
 
         <Menu

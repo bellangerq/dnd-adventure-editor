@@ -44,6 +44,11 @@ export default function Help({
         <ModalCloseButton />
         <ModalBody>
           <Stack spacing={8}>
+            <Text>
+              This website is designed to create and export beautiful and
+              print-ready D&D adventures. The content is automatically saved
+              locally in the browser.
+            </Text>
             <section>
               <Heading as="h3" fontSize="xl" marginBottom={2}>
                 Adventure details
