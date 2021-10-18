@@ -16,10 +16,14 @@ function App({ Component, pageProps }) {
       <Head>
         <title>{title}</title>
         <meta name="title" content={title} />
-        <meta name="og:title" content={title} />
+        <meta name="og:title" property="og:title" content={title} />
         <meta name="description" content={description} />
-        <meta name="og:description" content={description} />
-        <meta name="og:image" content={ogImage} />
+        <meta
+          name="og:description"
+          property="og:description"
+          content={description}
+        />
+        <meta name="og:image" property="og:image" content={ogImage} />
       </Head>
 
       <ChakraProvider theme={customTheme}>
