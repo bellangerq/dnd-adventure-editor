@@ -26,7 +26,7 @@ yarn dev
 - [x] Fix dark mode in print
 - [x] Header description
 - [ ] Meta + icon
-- [ ] Paste images
+- [x] Paste images
 - [ ] Different types of callout
 - [ ] Stats blocks
 - [ ] Syntax highlighter for the editor
