@@ -28,13 +28,13 @@ async function uploadImageFile(file) {
   }
 }
 
-export default function Editor({ onChange, value, scrollRef, onScroll }) {
+export default function Editor({ onChange, value, scrollRef }) {
   const [isUploading, setIsUploading] = useState(false)
   const toast = useToast()
 
-  const handleChange = e => {
+  const handleChange = useCallback(e => {
     onChange(e.target.value)
-  }
+  }, [onChange])
 
   /** @param {ClipboardEvent} e */
   const handlePaste = useCallback(
@@ -99,7 +99,6 @@ export default function Editor({ onChange, value, scrollRef, onScroll }) {
         value={value}
         onChange={handleChange}
         fontFamily="mono"
-        onScroll={onScroll}
         resize="none"
         onPaste={handlePaste}
         isDisabled={isUploading}
